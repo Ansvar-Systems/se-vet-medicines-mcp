@@ -45,7 +45,9 @@ const medicines: {
   pharmaceutical_form: string; legal_category: string;
   ma_holder: string; spc_url: string; status: string;
 }[] = [
-  // ---- ANTIBIOTICS: Penicillins ----
+  // ================================================================
+  //  ANTIBIOTICS: Penicillins
+  // ================================================================
   {
     id: 'peni-vet',
     product_name: 'Peni-vet vet (bensylpenicillin)',
@@ -118,8 +120,46 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'depocillin',
+    product_name: 'Depocillin vet (prokainpenicillin)',
+    registration_number: 'SE/V/0060',
+    active_substances: '["prokainpenicillin"]',
+    species_authorised: '["notkreatur","svin","far","hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'suramox',
+    product_name: 'Suramox vet (amoxicillin)',
+    registration_number: 'SE/V/0061',
+    active_substances: '["amoxicillin"]',
+    species_authorised: '["svin","fjaderfa"]',
+    pharmaceutical_form: 'oral pulver',
+    legal_category: 'Rx',
+    ma_holder: 'Virbac',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'amoxibactin',
+    product_name: 'Amoxibactin vet (amoxicillin)',
+    registration_number: 'SE/V/0062',
+    active_substances: '["amoxicillin"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'tablett',
+    legal_category: 'Rx',
+    ma_holder: 'Le Vet',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- ANTIBIOTICS: Tetracyclines ----
+  // ================================================================
+  //  ANTIBIOTICS: Tetracyclines
+  // ================================================================
   {
     id: 'terramycin',
     product_name: 'Terramycin vet (oxytetracyklin)',
@@ -146,7 +186,7 @@ const medicines: {
   },
   {
     id: 'engemycin',
-    product_name: 'Engemycin vet (oxytetracyklin)',
+    product_name: 'Engemycin LA vet (oxytetracyklin)',
     registration_number: 'SE/V/0024',
     active_substances: '["oxytetracyklin"]',
     species_authorised: '["notkreatur","svin","far"]',
@@ -168,8 +208,34 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'ronaxan',
+    product_name: 'Ronaxan vet (doxycyklin)',
+    registration_number: 'SE/V/0063',
+    active_substances: '["doxycyklin"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'tablett',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'hexasol',
+    product_name: 'Hexasol LA vet (oxytetracyklin + flunixin)',
+    registration_number: 'SE/V/0064',
+    active_substances: '["oxytetracyklin","flunixin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Norbrook',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- ANTIBIOTICS: Macrolides ----
+  // ================================================================
+  //  ANTIBIOTICS: Macrolides
+  // ================================================================
   {
     id: 'draxxin',
     product_name: 'Draxxin (tulathromycin)',
@@ -231,7 +297,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIBIOTICS: Fluoroquinolones (RESTRICTED — requires susceptibility testing per SJVFS 2019:32) ----
+  // ================================================================
+  //  ANTIBIOTICS: Fluoroquinolones (RESTRICTED — susceptibility testing per SJVFS 2019:32)
+  // ================================================================
   {
     id: 'baytril',
     product_name: 'Baytril vet (enrofloxacin)',
@@ -245,11 +313,23 @@ const medicines: {
     status: 'authorised',
   },
   {
+    id: 'baytril-oral',
+    product_name: 'Baytril vet oral (enrofloxacin)',
+    registration_number: 'SE/V/0065',
+    active_substances: '["enrofloxacin"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'tablett',
+    legal_category: 'Rx-restricted',
+    ma_holder: 'Elanco',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
     id: 'marbofloxacin-vet',
     product_name: 'Marbocyl vet (marbofloxacin)',
     registration_number: 'SE/V/0028',
     active_substances: '["marbofloxacin"]',
-    species_authorised: '["notkreatur","svin"]',
+    species_authorised: '["notkreatur","svin","hund","katt"]',
     pharmaceutical_form: 'injektionsvatska',
     legal_category: 'Rx-restricted',
     ma_holder: 'Vetoquinol',
@@ -257,7 +337,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIBIOTICS: Cephalosporins (RESTRICTED — 3rd/4th gen require susceptibility testing) ----
+  // ================================================================
+  //  ANTIBIOTICS: Cephalosporins (RESTRICTED — 3rd/4th gen require susceptibility testing)
+  // ================================================================
   {
     id: 'excenel',
     product_name: 'Excenel RTU (ceftiofur)',
@@ -306,8 +388,22 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'cepravin',
+    product_name: 'Cepravin Dry Cow (cefalonium)',
+    registration_number: 'SE/V/0066',
+    active_substances: '["cefalonium"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- ANTIBIOTICS: Sulfonamides / trimethoprim ----
+  // ================================================================
+  //  ANTIBIOTICS: Sulfonamides / trimethoprim
+  // ================================================================
   {
     id: 'borgal',
     product_name: 'Borgal vet (trimetoprim + sulfadoxin)',
@@ -333,7 +429,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIBIOTICS: Florfenicol ----
+  // ================================================================
+  //  ANTIBIOTICS: Florfenicol
+  // ================================================================
   {
     id: 'nuflor',
     product_name: 'Nuflor (florfenikol)',
@@ -359,7 +457,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIBIOTICS: Lincosamides ----
+  // ================================================================
+  //  ANTIBIOTICS: Lincosamides
+  // ================================================================
   {
     id: 'lincomycin-vet',
     product_name: 'Lincospectin vet (linkomycin + spektinomycin)',
@@ -373,7 +473,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIBIOTICS: Intramammary ----
+  // ================================================================
+  //  ANTIBIOTICS: Intramammary
+  // ================================================================
   {
     id: 'orbenin-dc',
     product_name: 'Orbenin Extra Dry Cow (kloxacillin)',
@@ -398,8 +500,150 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'carepen',
+    product_name: 'Carepen vet (bensylpenicillin)',
+    registration_number: 'SE/V/0067',
+    active_substances: '["bensylpenicillin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'siccalactin',
+    product_name: 'Siccalactin vet (bensylpenicillin + neomycin)',
+    registration_number: 'SE/V/0068',
+    active_substances: '["bensylpenicillin","neomycin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'mastiplan',
+    product_name: 'Mastiplan LC (bensylpenicillin + neomycin)',
+    registration_number: 'SE/V/0069',
+    active_substances: '["bensylpenicillin","neomycin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'pathozone',
+    product_name: 'Pathozone (cefoperazon)',
+    registration_number: 'SE/V/0070',
+    active_substances: '["cefoperazon"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'ubrolexin',
+    product_name: 'Ubrolexin (cefalexin + kanamycin)',
+    registration_number: 'EU/2/10/113',
+    active_substances: '["cefalexin","kanamycin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000060515',
+    status: 'authorised',
+  },
+  {
+    id: 'cobactan-lc',
+    product_name: 'Cobactan LC (cefquinom)',
+    registration_number: 'SE/V/0071',
+    active_substances: '["cefquinom"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'intramammaria',
+    legal_category: 'Rx-restricted',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- NSAIDs ----
+  // ================================================================
+  //  ANTIBIOTICS: Topical / Eye / Ear
+  // ================================================================
+  {
+    id: 'fucithalmic',
+    product_name: 'Fucithalmic vet (fusidinsyra)',
+    registration_number: 'SE/V/0072',
+    active_substances: '["fusidinsyra"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'ogondroppar',
+    legal_category: 'Rx',
+    ma_holder: 'Dechra',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'surolan',
+    product_name: 'Surolan (mikonazol + polymyxin B + prednisolon)',
+    registration_number: 'SE/V/0073',
+    active_substances: '["mikonazol","polymyxin B","prednisolon"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'oron-/ogondroppar',
+    legal_category: 'Rx',
+    ma_holder: 'Elanco',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'terramycin-spray',
+    product_name: 'Terramycin spray (oxytetracyklin)',
+    registration_number: 'SE/V/0074',
+    active_substances: '["oxytetracyklin"]',
+    species_authorised: '["notkreatur","far","svin"]',
+    pharmaceutical_form: 'kutanspray',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'cyclo-spray',
+    product_name: 'Cyclo spray (klortetracyklin)',
+    registration_number: 'SE/V/0075',
+    active_substances: '["klortetracyklin"]',
+    species_authorised: '["notkreatur","far","svin"]',
+    pharmaceutical_form: 'kutanspray',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+
+  // ================================================================
+  //  ANTIBIOTICS: Injectable combination
+  // ================================================================
+  {
+    id: 'combi-kel',
+    product_name: 'Combi-kel vet (bensylpenicillin + streptomycin)',
+    registration_number: 'SE/V/0076',
+    active_substances: '["bensylpenicillin","streptomycin"]',
+    species_authorised: '["notkreatur","svin","far"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Kela',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+
+  // ================================================================
+  //  NSAIDs
+  // ================================================================
   {
     id: 'metacam-inj',
     product_name: 'Metacam 5 mg/ml injektionsvatska (meloxicam)',
@@ -496,8 +740,58 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'tolfedine',
+    product_name: 'Tolfedine vet (tolfenamsyra)',
+    registration_number: 'SE/V/0077',
+    active_substances: '["tolfenamsyra"]',
+    species_authorised: '["notkreatur","svin","hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Vetoquinol',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'rimadyl',
+    product_name: 'Rimadyl vet (karprofen)',
+    registration_number: 'SE/V/0078',
+    active_substances: '["karprofen"]',
+    species_authorised: '["hund"]',
+    pharmaceutical_form: 'tablett',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'previcox',
+    product_name: 'Previcox (firocoxib)',
+    registration_number: 'EU/2/04/045',
+    active_substances: '["firocoxib"]',
+    species_authorised: '["hund","hast"]',
+    pharmaceutical_form: 'tuggtablett',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'loxicom',
+    product_name: 'Loxicom vet (meloxicam)',
+    registration_number: 'SE/V/0079',
+    active_substances: '["meloxicam"]',
+    species_authorised: '["notkreatur","svin","hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Norbrook',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- ANTIPARASITICS: Avermectins / Milbemycins ----
+  // ================================================================
+  //  ANTIPARASITICS: Avermectins / Milbemycins
+  // ================================================================
   {
     id: 'ivomec',
     product_name: 'Ivomec vet (ivermektin)',
@@ -571,7 +865,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIPARASITICS: Benzimidazoles ----
+  // ================================================================
+  //  ANTIPARASITICS: Benzimidazoles
+  // ================================================================
   {
     id: 'panacur',
     product_name: 'Panacur vet (fenbendazol)',
@@ -608,8 +904,22 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'hapadex',
+    product_name: 'Hapadex vet (netobimin)',
+    registration_number: 'SE/V/0080',
+    active_substances: '["netobimin"]',
+    species_authorised: '["notkreatur","far"]',
+    pharmaceutical_form: 'oral suspension',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- ANTIPARASITICS: Imidazothiazoles ----
+  // ================================================================
+  //  ANTIPARASITICS: Imidazothiazoles
+  // ================================================================
   {
     id: 'levamisol-vet',
     product_name: 'Levamisol vet (levamisol)',
@@ -623,7 +933,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- ANTIPARASITICS: Fasciolicides ----
+  // ================================================================
+  //  ANTIPARASITICS: Fasciolicides
+  // ================================================================
   {
     id: 'fasinex',
     product_name: 'Fasinex vet (triclabendazol)',
@@ -648,8 +960,86 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'endex',
+    product_name: 'Endex vet (triclabendazol + levamisol)',
+    registration_number: 'SE/V/0081',
+    active_substances: '["triclabendazol","levamisol"]',
+    species_authorised: '["notkreatur","far"]',
+    pharmaceutical_form: 'oral suspension',
+    legal_category: 'Rx',
+    ma_holder: 'Elanco',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- VACCINES ----
+  // ================================================================
+  //  ANTIPARASITICS: Ectoparasiticides (pour-on, collar, spray)
+  // ================================================================
+  {
+    id: 'spotinor',
+    product_name: 'Spotinor (deltametrin)',
+    registration_number: 'SE/V/0082',
+    active_substances: '["deltametrin"]',
+    species_authorised: '["notkreatur","far"]',
+    pharmaceutical_form: 'pour-on',
+    legal_category: 'Rx',
+    ma_holder: 'Norbrook',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'butox',
+    product_name: 'Butox vet (deltametrin)',
+    registration_number: 'SE/V/0083',
+    active_substances: '["deltametrin"]',
+    species_authorised: '["notkreatur","far"]',
+    pharmaceutical_form: 'pour-on',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'bayticol',
+    product_name: 'Bayticol Pour-on (flumetrin)',
+    registration_number: 'SE/V/0084',
+    active_substances: '["flumetrin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'pour-on',
+    legal_category: 'Rx',
+    ma_holder: 'Elanco',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'taktic',
+    product_name: 'Taktic vet (amitraz)',
+    registration_number: 'SE/V/0085',
+    active_substances: '["amitraz"]',
+    species_authorised: '["notkreatur","svin"]',
+    pharmaceutical_form: 'koncentrat for bad',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'scalibor',
+    product_name: 'Scalibor (deltametrin)',
+    registration_number: 'SE/V/0086',
+    active_substances: '["deltametrin"]',
+    species_authorised: '["hund"]',
+    pharmaceutical_form: 'halsband',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+
+  // ================================================================
+  //  VACCINES
+  // ================================================================
   {
     id: 'bovilis-bvd',
     product_name: 'Bovilis BVD (BVD-vaccin)',
@@ -734,8 +1124,166 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'rispoval-rs-bvd',
+    product_name: 'Rispoval RS+BVD (RS- och BVD-vaccin)',
+    registration_number: 'SE/V/0087',
+    active_substances: '["RS-virusantigen","BVD-virusantigen"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'bravoxin-10',
+    product_name: 'Bravoxin 10 (klostridievaccin 10-valent)',
+    registration_number: 'SE/V/0088',
+    active_substances: '["klostridietoxoid-10-valent"]',
+    species_authorised: '["notkreatur","far","get"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'porcilis-pcv-mhyo',
+    product_name: 'Porcilis PCV M Hyo (PCV2 + Mycoplasma)',
+    registration_number: 'EU/2/16/195',
+    active_substances: '["PCV2-antigen","Mycoplasma-hyopneumoniae-antigen"]',
+    species_authorised: '["svin"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'porcilis-lawsonia',
+    product_name: 'Porcilis Lawsonia (Lawsonia intracellularis-vaccin)',
+    registration_number: 'EU/2/15/180',
+    active_substances: '["Lawsonia-intracellularis-antigen"]',
+    species_authorised: '["svin"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'ingelvac-circoflex',
+    product_name: 'Ingelvac CircoFLEX (PCV2-vaccin svin)',
+    registration_number: 'EU/2/07/075',
+    active_substances: '["PCV2-antigen"]',
+    species_authorised: '["svin"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'nobivac-dhppi',
+    product_name: 'Nobivac DHPPi (valpsjuka, hepatit, parvo, parainfluensa)',
+    registration_number: 'SE/V/0089',
+    active_substances: '["valpsjuke-virus","adenovirus","parvovirus","parainfluensavirus"]',
+    species_authorised: '["hund"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'nobivac-lepto',
+    product_name: 'Nobivac Lepto (leptospiros-vaccin)',
+    registration_number: 'SE/V/0090',
+    active_substances: '["Leptospira-antigen"]',
+    species_authorised: '["hund"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'purevax-rcpch',
+    product_name: 'Purevax RCPCh (kattsnuva, calici, panleucopeni, klamydia)',
+    registration_number: 'EU/2/04/044',
+    active_substances: '["herpesvirus","calicivirus","panleucopeni-virus","Chlamydophila"]',
+    species_authorised: '["katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'eurican-dhppi2-l',
+    product_name: 'Eurican DHPPi2-L (hundvaccin multivalent)',
+    registration_number: 'SE/V/0091',
+    active_substances: '["valpsjuke-virus","adenovirus","parvovirus","parainfluensa","Leptospira"]',
+    species_authorised: '["hund"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'equilis-prequenza',
+    product_name: 'Equilis Prequenza (hastinfluensa-vaccin)',
+    registration_number: 'EU/2/03/037',
+    active_substances: '["influensa-A-equi-antigen"]',
+    species_authorised: '["hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'proteqflu',
+    product_name: 'ProteqFlu (hastinfluensa-vaccin rekombinant)',
+    registration_number: 'EU/2/03/038',
+    active_substances: '["influensa-A-equi-rekombinant"]',
+    species_authorised: '["hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Boehringer Ingelheim',
+    spc_url: 'https://medicines.health.europa.eu/veterinary/en/600000027291',
+    status: 'authorised',
+  },
+  {
+    id: 'equilis-tetanus',
+    product_name: 'Equilis Te (tetanus-vaccin hast)',
+    registration_number: 'SE/V/0092',
+    active_substances: '["tetanustoxoid"]',
+    species_authorised: '["hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'nobivac-rabies',
+    product_name: 'Nobivac Rabies (rabiesvaccin)',
+    registration_number: 'SE/V/0093',
+    active_substances: '["rabiesvirus-antigen"]',
+    species_authorised: '["hund","katt","hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- HORMONES (therapeutic use — not growth promotion) ----
+  // ================================================================
+  //  HORMONES / REPRODUCTION (therapeutic use — not growth promotion)
+  // ================================================================
   {
     id: 'estrumate',
     product_name: 'Estrumate vet (kloprostenol)',
@@ -784,8 +1332,250 @@ const medicines: {
     spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
     status: 'authorised',
   },
+  {
+    id: 'fertagyl',
+    product_name: 'Fertagyl vet (gonadorelin)',
+    registration_number: 'SE/V/0094',
+    active_substances: '["gonadorelin"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'cue-mate',
+    product_name: 'Cue-Mate (progesteron)',
+    registration_number: 'SE/V/0095',
+    active_substances: '["progesteron"]',
+    species_authorised: '["notkreatur"]',
+    pharmaceutical_form: 'vaginalinlagg',
+    legal_category: 'Rx',
+    ma_holder: 'Bayer',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'planate',
+    product_name: 'Planate vet (kloprostenol)',
+    registration_number: 'SE/V/0096',
+    active_substances: '["kloprostenol"]',
+    species_authorised: '["notkreatur","svin","hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
 
-  // ---- OTHER THERAPEUTIC ----
+  // ================================================================
+  //  ANAESTHETICS / SEDATION
+  // ================================================================
+  {
+    id: 'dexdomitor',
+    product_name: 'Dexdomitor (dexmedetomidin)',
+    registration_number: 'SE/V/0097',
+    active_substances: '["dexmedetomidin"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Orion',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'domitor',
+    product_name: 'Domitor vet (medetomidin)',
+    registration_number: 'SE/V/0098',
+    active_substances: '["medetomidin"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Orion',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'antisedan',
+    product_name: 'Antisedan (atipamezol)',
+    registration_number: 'SE/V/0099',
+    active_substances: '["atipamezol"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Orion',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'propofol-vet',
+    product_name: 'PropoFlo Plus (propofol)',
+    registration_number: 'SE/V/0100',
+    active_substances: '["propofol"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'alfaxan',
+    product_name: 'Alfaxan (alfaxalon)',
+    registration_number: 'SE/V/0101',
+    active_substances: '["alfaxalon"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Jurox',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'ketaminol',
+    product_name: 'Ketaminol vet (ketamin)',
+    registration_number: 'SE/V/0102',
+    active_substances: '["ketamin"]',
+    species_authorised: '["hund","katt","hast","notkreatur"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx-narkotika',
+    ma_holder: 'MSD',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'zoletil',
+    product_name: 'Zoletil vet (tiletamin + zolazepam)',
+    registration_number: 'SE/V/0103',
+    active_substances: '["tiletamin","zolazepam"]',
+    species_authorised: '["hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx-narkotika',
+    ma_holder: 'Virbac',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'isofluran-vet',
+    product_name: 'IsoFlo vet (isofluran)',
+    registration_number: 'SE/V/0104',
+    active_substances: '["isofluran"]',
+    species_authorised: '["hund","katt","hast","notkreatur","svin","far"]',
+    pharmaceutical_form: 'inhalationsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'sevofluran-vet',
+    product_name: 'SevoFlo (sevofluran)',
+    registration_number: 'SE/V/0105',
+    active_substances: '["sevofluran"]',
+    species_authorised: '["hund","katt","hast"]',
+    pharmaceutical_form: 'inhalationsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Zoetis',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'lidokain-vet',
+    product_name: 'Lidokain vet (lidokain)',
+    registration_number: 'SE/V/0106',
+    active_substances: '["lidokain"]',
+    species_authorised: '["hund","katt","hast","notkreatur","svin","far"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Dechra',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'bupivakain-vet',
+    product_name: 'Bupivacaine vet (bupivakain)',
+    registration_number: 'SE/V/0107',
+    active_substances: '["bupivakain"]',
+    species_authorised: '["hund","katt","hast"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Dechra',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+
+  // ================================================================
+  //  ANTIFUNGALS
+  // ================================================================
+  {
+    id: 'imaverol',
+    product_name: 'Imaverol vet (enilkonazol)',
+    registration_number: 'SE/V/0108',
+    active_substances: '["enilkonazol"]',
+    species_authorised: '["notkreatur","hast","hund","katt"]',
+    pharmaceutical_form: 'kutan losning',
+    legal_category: 'Rx',
+    ma_holder: 'Elanco',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+
+  // ================================================================
+  //  DIURETICS / SUPPORTIVE (food animal)
+  // ================================================================
+  {
+    id: 'furosemid-vet',
+    product_name: 'Furosemid vet (furosemid)',
+    registration_number: 'SE/V/0109',
+    active_substances: '["furosemid"]',
+    species_authorised: '["notkreatur","hast","hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Dechra',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'atropin-vet',
+    product_name: 'Atropin vet (atropin)',
+    registration_number: 'SE/V/0110',
+    active_substances: '["atropin"]',
+    species_authorised: '["notkreatur","svin","hast","hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Vetoquinol',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'butorphanol-vet',
+    product_name: 'Butomidor vet (butorfanol)',
+    registration_number: 'SE/V/0111',
+    active_substances: '["butorfanol"]',
+    species_authorised: '["hast","hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx-narkotika',
+    ma_holder: 'Richter Pharma',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+  {
+    id: 'xylazin-vet',
+    product_name: 'Rompun vet (xylazin)',
+    registration_number: 'SE/V/0112',
+    active_substances: '["xylazin"]',
+    species_authorised: '["notkreatur","hast","hund","katt"]',
+    pharmaceutical_form: 'injektionsvatska',
+    legal_category: 'Rx',
+    ma_holder: 'Elanco',
+    spc_url: 'https://www.fass.se/LIF/product?userType=1&nplId=19980107000012',
+    status: 'authorised',
+  },
+
+  // ================================================================
+  //  OTHER THERAPEUTIC
+  // ================================================================
   {
     id: 'calcium-vet',
     product_name: 'Calciject 40 (kalciumglukonat)',
@@ -811,7 +1601,9 @@ const medicines: {
     status: 'authorised',
   },
 
-  // ---- COMPANION ANIMAL (non-food) ----
+  // ================================================================
+  //  COMPANION ANIMAL (non-food)
+  // ================================================================
   {
     id: 'apoquel',
     product_name: 'Apoquel (oclacitinib)',
@@ -866,7 +1658,9 @@ const withdrawalPeriods: {
   medicine_id: string; species: string; product_type: string;
   period_days: number; notes: string; zero_day_allowed: number;
 }[] = [
-  // ---- Penicillins ----
+  // ================================================================
+  //  Penicillins
+  // ================================================================
 
   // Peni-vet (benzylpenicillin) — first-line antibiotic per SVA/SJVFS 2019:32
   { medicine_id: 'peni-vet', species: 'notkreatur', product_type: 'kott', period_days: 6, notes: 'First-line antibiotic for cattle. SPC: 6 days meat.', zero_day_allowed: 0 },
@@ -903,7 +1697,26 @@ const withdrawalPeriods: {
   { medicine_id: 'ultrapen', species: 'notkreatur', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours milk.', zero_day_allowed: 0 },
   { medicine_id: 'ultrapen', species: 'svin', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days pig meat.', zero_day_allowed: 0 },
 
-  // ---- Tetracyclines ----
+  // Depocillin (procaine penicillin)
+  { medicine_id: 'depocillin', species: 'notkreatur', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days cattle meat. Procaine penicillin depot.', zero_day_allowed: 0 },
+  { medicine_id: 'depocillin', species: 'notkreatur', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours milk.', zero_day_allowed: 0 },
+  { medicine_id: 'depocillin', species: 'svin', product_type: 'kott', period_days: 5, notes: 'SPC: 5 days pig meat.', zero_day_allowed: 0 },
+  { medicine_id: 'depocillin', species: 'far', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days sheep meat.', zero_day_allowed: 0 },
+
+  // Suramox (amoxicillin oral — pig/poultry)
+  { medicine_id: 'suramox', species: 'svin', product_type: 'kott', period_days: 2, notes: 'SPC: 2 days pig meat. Oral amoxicillin.', zero_day_allowed: 0 },
+  { medicine_id: 'suramox', species: 'fjaderfa', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day poultry meat.', zero_day_allowed: 0 },
+  { medicine_id: 'suramox', species: 'fjaderfa', product_type: 'agg', period_days: 0, notes: 'NOT authorised for laying hens producing eggs for consumption.', zero_day_allowed: 0 },
+
+  // Combi-kel (penicillin + streptomycin)
+  { medicine_id: 'combi-kel', species: 'notkreatur', product_type: 'kott', period_days: 24, notes: 'SPC: 24 days cattle meat. Penicillin/streptomycin combination.', zero_day_allowed: 0 },
+  { medicine_id: 'combi-kel', species: 'notkreatur', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours milk.', zero_day_allowed: 0 },
+  { medicine_id: 'combi-kel', species: 'svin', product_type: 'kott', period_days: 18, notes: 'SPC: 18 days pig meat.', zero_day_allowed: 0 },
+  { medicine_id: 'combi-kel', species: 'far', product_type: 'kott', period_days: 24, notes: 'SPC: 24 days sheep meat.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Tetracyclines
+  // ================================================================
 
   // Terramycin (oxytetracycline)
   { medicine_id: 'terramycin', species: 'notkreatur', product_type: 'kott', period_days: 18, notes: 'SPC: 18 days cattle meat. Long-acting formulation.', zero_day_allowed: 0 },
@@ -917,7 +1730,7 @@ const withdrawalPeriods: {
   { medicine_id: 'alamycin', species: 'svin', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days pig meat.', zero_day_allowed: 0 },
   { medicine_id: 'alamycin', species: 'far', product_type: 'kott', period_days: 21, notes: 'SPC: 21 days sheep meat.', zero_day_allowed: 0 },
 
-  // Engemycin (oxytetracycline)
+  // Engemycin LA (oxytetracycline)
   { medicine_id: 'engemycin', species: 'notkreatur', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'engemycin', species: 'notkreatur', product_type: 'mjolk', period_days: 7, notes: 'SPC: 7 days milk.', zero_day_allowed: 0 },
   { medicine_id: 'engemycin', species: 'svin', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days pig meat.', zero_day_allowed: 0 },
@@ -928,9 +1741,27 @@ const withdrawalPeriods: {
   { medicine_id: 'doxycyclin-vet', species: 'fjaderfa', product_type: 'kott', period_days: 3, notes: 'SPC: 3 days poultry meat.', zero_day_allowed: 0 },
   { medicine_id: 'doxycyclin-vet', species: 'fjaderfa', product_type: 'agg', period_days: 0, notes: 'NOT authorised for laying hens producing eggs for consumption.', zero_day_allowed: 0 },
 
-  // ---- Macrolides ----
+  // Hexasol LA (oxytetracycline + flunixin)
+  { medicine_id: 'hexasol', species: 'notkreatur', product_type: 'kott', period_days: 35, notes: 'SPC: 35 days cattle meat. Combination product — prolonged withdrawal.', zero_day_allowed: 0 },
+  { medicine_id: 'hexasol', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
 
-  // Draxxin (tulathromycin) — EMA EPAR confirmed
+  // Terramycin spray (oxytetracycline topical)
+  { medicine_id: 'terramycin-spray', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical spray application.', zero_day_allowed: 1 },
+  { medicine_id: 'terramycin-spray', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for topical application.', zero_day_allowed: 1 },
+  { medicine_id: 'terramycin-spray', species: 'far', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical spray.', zero_day_allowed: 1 },
+  { medicine_id: 'terramycin-spray', species: 'svin', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical spray.', zero_day_allowed: 1 },
+
+  // Cyclo spray (chlortetracycline topical)
+  { medicine_id: 'cyclo-spray', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical spray.', zero_day_allowed: 1 },
+  { medicine_id: 'cyclo-spray', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for topical application.', zero_day_allowed: 1 },
+  { medicine_id: 'cyclo-spray', species: 'far', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical spray.', zero_day_allowed: 1 },
+  { medicine_id: 'cyclo-spray', species: 'svin', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical spray.', zero_day_allowed: 1 },
+
+  // ================================================================
+  //  Macrolides
+  // ================================================================
+
+  // Draxxin (tulathromycin)
   { medicine_id: 'draxxin', species: 'notkreatur', product_type: 'kott', period_days: 49, notes: 'EMA EPAR: 49 days cattle meat. Long tissue persistence.', zero_day_allowed: 0 },
   { medicine_id: 'draxxin', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
   { medicine_id: 'draxxin', species: 'svin', product_type: 'kott', period_days: 33, notes: 'EMA EPAR: 33 days pig meat.', zero_day_allowed: 0 },
@@ -939,7 +1770,7 @@ const withdrawalPeriods: {
   { medicine_id: 'zuprevo', species: 'notkreatur', product_type: 'kott', period_days: 47, notes: 'SPC: 47 days cattle meat. Macrolide persistence.', zero_day_allowed: 0 },
   { medicine_id: 'zuprevo', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
 
-  // Orizure (tulathromycin) — pigs only
+  // Orizure (tulathromycin — pigs only)
   { medicine_id: 'orizure', species: 'svin', product_type: 'kott', period_days: 33, notes: 'SPC: 33 days pig meat. Macrolide.', zero_day_allowed: 0 },
 
   // Tylan (tylosin)
@@ -954,7 +1785,9 @@ const withdrawalPeriods: {
   { medicine_id: 'spiramycin-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours milk.', zero_day_allowed: 0 },
   { medicine_id: 'spiramycin-vet', species: 'svin', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days pig meat.', zero_day_allowed: 0 },
 
-  // ---- Fluoroquinolones (RESTRICTED) ----
+  // ================================================================
+  //  Fluoroquinolones (RESTRICTED)
+  // ================================================================
 
   // Baytril (enrofloxacin)
   { medicine_id: 'baytril', species: 'notkreatur', product_type: 'kott', period_days: 14, notes: 'RESTRICTED: susceptibility testing required per SJVFS 2019:32. SPC: 14 days.', zero_day_allowed: 0 },
@@ -966,7 +1799,9 @@ const withdrawalPeriods: {
   { medicine_id: 'marbofloxacin-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 72 hours milk.', zero_day_allowed: 0 },
   { medicine_id: 'marbofloxacin-vet', species: 'svin', product_type: 'kott', period_days: 4, notes: 'RESTRICTED. SPC: 4 days pig meat.', zero_day_allowed: 0 },
 
-  // ---- Cephalosporins (RESTRICTED — 3rd/4th gen) ----
+  // ================================================================
+  //  Cephalosporins (RESTRICTED — 3rd/4th gen)
+  // ================================================================
 
   // Excenel RTU (ceftiofur — 3rd gen)
   { medicine_id: 'excenel', species: 'notkreatur', product_type: 'kott', period_days: 8, notes: 'RESTRICTED: 3rd gen cephalosporin. SPC: 8 days cattle meat (IM).', zero_day_allowed: 0 },
@@ -978,15 +1813,25 @@ const withdrawalPeriods: {
   { medicine_id: 'naxcel', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'EMA EPAR: zero milk withdrawal.', zero_day_allowed: 1 },
   { medicine_id: 'naxcel', species: 'svin', product_type: 'kott', period_days: 71, notes: 'RESTRICTED. EMA EPAR: 71 days pig meat (IM injection).', zero_day_allowed: 0 },
 
-  // Cobactan (cefquinome — 4th gen)
+  // Cobactan (cefquinome — 4th gen, injectable)
   { medicine_id: 'cobactan', species: 'notkreatur', product_type: 'kott', period_days: 5, notes: 'RESTRICTED: 4th gen cephalosporin — last resort only. SPC: 5 days.', zero_day_allowed: 0 },
   { medicine_id: 'cobactan', species: 'notkreatur', product_type: 'mjolk', period_days: 1, notes: 'SPC: 24 hours milk.', zero_day_allowed: 0 },
+
+  // Cobactan LC (cefquinome — intramammary)
+  { medicine_id: 'cobactan-lc', species: 'notkreatur', product_type: 'kott', period_days: 2, notes: 'RESTRICTED: 4th gen cephalosporin. SPC: 2 days cattle meat after intramammary.', zero_day_allowed: 0 },
+  { medicine_id: 'cobactan-lc', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 5 milkings (approx 60 hours).', zero_day_allowed: 0 },
 
   // Rilexine (cefalexin — 1st gen, intramammary)
   { medicine_id: 'cefalexin-vet', species: 'notkreatur', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days cattle meat. 1st gen cephalosporin — intramammary.', zero_day_allowed: 0 },
   { medicine_id: 'cefalexin-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 3 milkings (approx 36 hours).', zero_day_allowed: 0 },
 
-  // ---- Sulfonamides / trimethoprim ----
+  // Cepravin DC (cefalonium — dry cow intramammary)
+  { medicine_id: 'cepravin', species: 'notkreatur', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days cattle meat. Dry cow product.', zero_day_allowed: 0 },
+  { medicine_id: 'cepravin', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'Dry cow product — no milk withdrawal during dry period. After calving: discard colostrum for minimum 96 hours.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Sulfonamides / trimethoprim
+  // ================================================================
 
   // Borgal (trimethoprim + sulfadoxine)
   { medicine_id: 'borgal', species: 'notkreatur', product_type: 'kott', period_days: 12, notes: 'SPC: 12 days cattle meat.', zero_day_allowed: 0 },
@@ -1000,7 +1845,9 @@ const withdrawalPeriods: {
   { medicine_id: 'tribrissen', species: 'svin', product_type: 'kott', period_days: 8, notes: 'SPC: 8 days pig meat.', zero_day_allowed: 0 },
   { medicine_id: 'tribrissen', species: 'far', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days sheep meat.', zero_day_allowed: 0 },
 
-  // ---- Florfenicol ----
+  // ================================================================
+  //  Florfenicol
+  // ================================================================
 
   // Nuflor (florfenicol — IM injection)
   { medicine_id: 'nuflor', species: 'notkreatur', product_type: 'kott', period_days: 30, notes: 'SPC: 30 days cattle meat (IM). SC injection requires 44 days — see Nuflor Minidose.', zero_day_allowed: 0 },
@@ -1010,14 +1857,18 @@ const withdrawalPeriods: {
   { medicine_id: 'nuflor-minidose', species: 'notkreatur', product_type: 'kott', period_days: 44, notes: 'EMA EPAR: 44 days cattle meat (SC injection). Extended tissue depletion.', zero_day_allowed: 0 },
   { medicine_id: 'nuflor-minidose', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
 
-  // ---- Lincosamides ----
+  // ================================================================
+  //  Lincosamides
+  // ================================================================
 
   // Lincospectin (lincomycin + spectinomycin)
   { medicine_id: 'lincomycin-vet', species: 'svin', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days pig meat.', zero_day_allowed: 0 },
   { medicine_id: 'lincomycin-vet', species: 'fjaderfa', product_type: 'kott', period_days: 5, notes: 'SPC: 5 days poultry meat.', zero_day_allowed: 0 },
   { medicine_id: 'lincomycin-vet', species: 'fjaderfa', product_type: 'agg', period_days: 0, notes: 'NOT authorised for laying hens producing eggs for consumption.', zero_day_allowed: 0 },
 
-  // ---- Intramammary antibiotics ----
+  // ================================================================
+  //  Intramammary antibiotics
+  // ================================================================
 
   // Orbenin DC (cloxacillin — dry cow)
   { medicine_id: 'orbenin-dc', species: 'notkreatur', product_type: 'kott', period_days: 28, notes: 'Dry cow product. SPC: 28 days cattle meat. Must observe dry period.', zero_day_allowed: 0 },
@@ -1027,9 +1878,31 @@ const withdrawalPeriods: {
   { medicine_id: 'ubro-red', species: 'notkreatur', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'ubro-red', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 3 milkings (approx 36 hours) after last application.', zero_day_allowed: 0 },
 
-  // ---- NSAIDs ----
+  // Carepen (benzylpenicillin — intramammary)
+  { medicine_id: 'carepen', species: 'notkreatur', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days cattle meat. Intramammary penicillin.', zero_day_allowed: 0 },
+  { medicine_id: 'carepen', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 4 milkings (approx 48 hours).', zero_day_allowed: 0 },
 
-  // Metacam 5 mg/ml (meloxicam) — FASS Vet confirmed
+  // Siccalactin (penicillin + neomycin — dry cow)
+  { medicine_id: 'siccalactin', species: 'notkreatur', product_type: 'kott', period_days: 28, notes: 'Dry cow product. SPC: 28 days cattle meat.', zero_day_allowed: 0 },
+  { medicine_id: 'siccalactin', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'Dry cow product — after calving: discard colostrum for 96 hours.', zero_day_allowed: 0 },
+
+  // Mastiplan LC (penicillin + neomycin — lactating)
+  { medicine_id: 'mastiplan', species: 'notkreatur', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days cattle meat. Lactating cow intramammary.', zero_day_allowed: 0 },
+  { medicine_id: 'mastiplan', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 72 hours milk (6 milkings).', zero_day_allowed: 0 },
+
+  // Pathozone (cefoperazone — intramammary)
+  { medicine_id: 'pathozone', species: 'notkreatur', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days cattle meat.', zero_day_allowed: 0 },
+  { medicine_id: 'pathozone', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 84 hours milk (7 milkings).', zero_day_allowed: 0 },
+
+  // Ubrolexin (cefalexin + kanamycin — intramammary)
+  { medicine_id: 'ubrolexin', species: 'notkreatur', product_type: 'kott', period_days: 5, notes: 'EMA EPAR: 5 days cattle meat. Intramammary.', zero_day_allowed: 0 },
+  { medicine_id: 'ubrolexin', species: 'notkreatur', product_type: 'mjolk', period_days: 4, notes: 'EMA EPAR: 96 hours milk (8 milkings).', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  NSAIDs
+  // ================================================================
+
+  // Metacam 5 mg/ml (meloxicam)
   { medicine_id: 'metacam-inj', species: 'notkreatur', product_type: 'kott', period_days: 15, notes: 'FASS Vet SPC: 15 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'metacam-inj', species: 'notkreatur', product_type: 'mjolk', period_days: 5, notes: 'FASS Vet SPC: 5 days (120 hours) milk.', zero_day_allowed: 0 },
   { medicine_id: 'metacam-inj', species: 'svin', product_type: 'kott', period_days: 5, notes: 'FASS Vet SPC: 5 days pig meat.', zero_day_allowed: 0 },
@@ -1039,8 +1912,13 @@ const withdrawalPeriods: {
   { medicine_id: 'metacam-20', species: 'notkreatur', product_type: 'mjolk', period_days: 5, notes: 'SPC: 5 days milk.', zero_day_allowed: 0 },
   { medicine_id: 'metacam-20', species: 'svin', product_type: 'kott', period_days: 5, notes: 'SPC: 5 days pig meat.', zero_day_allowed: 0 },
 
-  // Metacam oral (meloxicam — pig-specific oral formulation)
+  // Metacam oral (meloxicam — pig-specific)
   { medicine_id: 'metacam-oral-svin', species: 'svin', product_type: 'kott', period_days: 5, notes: 'FASS Vet SPC: 5 days pig meat. Oral suspension.', zero_day_allowed: 0 },
+
+  // Loxicom (meloxicam generic)
+  { medicine_id: 'loxicom', species: 'notkreatur', product_type: 'kott', period_days: 15, notes: 'SPC: 15 days cattle meat. Generic meloxicam.', zero_day_allowed: 0 },
+  { medicine_id: 'loxicom', species: 'notkreatur', product_type: 'mjolk', period_days: 5, notes: 'SPC: 5 days milk.', zero_day_allowed: 0 },
+  { medicine_id: 'loxicom', species: 'svin', product_type: 'kott', period_days: 5, notes: 'SPC: 5 days pig meat.', zero_day_allowed: 0 },
 
   // Finadyne (flunixin — injectable)
   { medicine_id: 'finadyne', species: 'notkreatur', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days cattle meat (IV). IM injection: 28 days.', zero_day_allowed: 0 },
@@ -1050,7 +1928,7 @@ const withdrawalPeriods: {
   { medicine_id: 'finadyne-transdermal', species: 'notkreatur', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days cattle meat. Pour-on formulation.', zero_day_allowed: 0 },
   { medicine_id: 'finadyne-transdermal', species: 'notkreatur', product_type: 'mjolk', period_days: 2, notes: 'SPC: 36 hours milk (rounded to 2 days).', zero_day_allowed: 0 },
 
-  // Ketofen (ketoprofen) — EMA confirmed
+  // Ketofen (ketoprofen)
   { medicine_id: 'ketofen', species: 'notkreatur', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days cattle meat (IM). 1 day for IV.', zero_day_allowed: 0 },
   { medicine_id: 'ketofen', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal. No withholding required.', zero_day_allowed: 1 },
   { medicine_id: 'ketofen', species: 'svin', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days pig meat.', zero_day_allowed: 0 },
@@ -1059,11 +1937,18 @@ const withdrawalPeriods: {
   { medicine_id: 'buscopan', species: 'notkreatur', product_type: 'kott', period_days: 12, notes: 'SPC: 12 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'buscopan', species: 'notkreatur', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours milk.', zero_day_allowed: 0 },
 
-  // Carprodyl (carprofen)
+  // Carprodyl (carprofen — injectable for cattle)
   { medicine_id: 'carprodyl', species: 'notkreatur', product_type: 'kott', period_days: 21, notes: 'SPC: 21 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'carprodyl', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
 
-  // ---- Antiparasitics: Avermectins / Milbemycins ----
+  // Tolfedine (tolfenamic acid)
+  { medicine_id: 'tolfedine', species: 'notkreatur', product_type: 'kott', period_days: 12, notes: 'SPC: 12 days cattle meat.', zero_day_allowed: 0 },
+  { medicine_id: 'tolfedine', species: 'notkreatur', product_type: 'mjolk', period_days: 1, notes: 'SPC: 24 hours milk.', zero_day_allowed: 0 },
+  { medicine_id: 'tolfedine', species: 'svin', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days pig meat.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Antiparasitics: Avermectins / Milbemycins
+  // ================================================================
 
   // Ivomec injection (ivermectin)
   { medicine_id: 'ivomec', species: 'notkreatur', product_type: 'kott', period_days: 42, notes: 'SPC: 42 days cattle meat. SC injection — long tissue residue.', zero_day_allowed: 0 },
@@ -1093,7 +1978,9 @@ const withdrawalPeriods: {
   { medicine_id: 'dectomax', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
   { medicine_id: 'dectomax', species: 'far', product_type: 'kott', period_days: 70, notes: 'SPC: 70 days sheep meat.', zero_day_allowed: 0 },
 
-  // ---- Antiparasitics: Benzimidazoles ----
+  // ================================================================
+  //  Antiparasitics: Benzimidazoles
+  // ================================================================
 
   // Panacur (fenbendazole)
   { medicine_id: 'panacur', species: 'notkreatur', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days cattle meat.', zero_day_allowed: 0 },
@@ -1103,7 +1990,7 @@ const withdrawalPeriods: {
   { medicine_id: 'panacur', species: 'get', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days goat meat.', zero_day_allowed: 0 },
   { medicine_id: 'panacur', species: 'svin', product_type: 'kott', period_days: 4, notes: 'SPC: 4 days pig meat.', zero_day_allowed: 0 },
 
-  // Valbazen (albendazole) — EMA Valbazen referral confirmed
+  // Valbazen (albendazole)
   { medicine_id: 'valbazen', species: 'notkreatur', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'valbazen', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 60 hours milk (rounded to 3 days). Contraindicated first trimester pregnancy.', zero_day_allowed: 0 },
   { medicine_id: 'valbazen', species: 'far', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days sheep meat.', zero_day_allowed: 0 },
@@ -1114,7 +2001,14 @@ const withdrawalPeriods: {
   { medicine_id: 'oxfenil', species: 'notkreatur', product_type: 'mjolk', period_days: 5, notes: 'SPC: 108 hours milk (rounded to 5 days).', zero_day_allowed: 0 },
   { medicine_id: 'oxfenil', species: 'far', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days sheep meat.', zero_day_allowed: 0 },
 
-  // ---- Antiparasitics: Imidazothiazoles ----
+  // Hapadex (netobimin)
+  { medicine_id: 'hapadex', species: 'notkreatur', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days cattle meat. Netobimin pro-benzimidazole.', zero_day_allowed: 0 },
+  { medicine_id: 'hapadex', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 72 hours milk.', zero_day_allowed: 0 },
+  { medicine_id: 'hapadex', species: 'far', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days sheep meat.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Antiparasitics: Imidazothiazoles
+  // ================================================================
 
   // Levamisol (levamisole)
   { medicine_id: 'levamisol-vet', species: 'notkreatur', product_type: 'kott', period_days: 35, notes: 'SPC: 35 days cattle meat. Conservative — levamisole has wide range (30-40 days) across products.', zero_day_allowed: 0 },
@@ -1122,7 +2016,9 @@ const withdrawalPeriods: {
   { medicine_id: 'levamisol-vet', species: 'far', product_type: 'kott', period_days: 30, notes: 'SPC: 30 days sheep meat.', zero_day_allowed: 0 },
   { medicine_id: 'levamisol-vet', species: 'svin', product_type: 'kott', period_days: 35, notes: 'SPC: 35 days pig meat.', zero_day_allowed: 0 },
 
-  // ---- Antiparasitics: Fasciolicides ----
+  // ================================================================
+  //  Antiparasitics: Fasciolicides
+  // ================================================================
 
   // Fasinex (triclabendazole — liver fluke)
   { medicine_id: 'fasinex', species: 'notkreatur', product_type: 'kott', period_days: 56, notes: 'SPC: 56 days cattle meat. Liver fluke treatment.', zero_day_allowed: 0 },
@@ -1133,20 +2029,63 @@ const withdrawalPeriods: {
   { medicine_id: 'closamectin', species: 'notkreatur', product_type: 'kott', period_days: 77, notes: 'SPC: 77 days cattle meat. Closantel has very long tissue persistence.', zero_day_allowed: 0 },
   { medicine_id: 'closamectin', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
 
-  // ---- Hormones (therapeutic) ----
+  // Endex (triclabendazole + levamisole)
+  { medicine_id: 'endex', species: 'notkreatur', product_type: 'kott', period_days: 56, notes: 'SPC: 56 days cattle meat. Combination fluke + roundworm.', zero_day_allowed: 0 },
+  { medicine_id: 'endex', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for lactating dairy cattle producing milk for consumption.', zero_day_allowed: 0 },
+  { medicine_id: 'endex', species: 'far', product_type: 'kott', period_days: 56, notes: 'SPC: 56 days sheep meat.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Antiparasitics: Ectoparasiticides
+  // ================================================================
+
+  // Spotinor (deltamethrin pour-on)
+  { medicine_id: 'spotinor', species: 'notkreatur', product_type: 'kott', period_days: 18, notes: 'SPC: 18 days cattle meat. Deltamethrin pour-on.', zero_day_allowed: 0 },
+  { medicine_id: 'spotinor', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+  { medicine_id: 'spotinor', species: 'far', product_type: 'kott', period_days: 35, notes: 'SPC: 35 days sheep meat.', zero_day_allowed: 0 },
+
+  // Butox (deltamethrin pour-on)
+  { medicine_id: 'butox', species: 'notkreatur', product_type: 'kott', period_days: 18, notes: 'SPC: 18 days cattle meat. Deltamethrin.', zero_day_allowed: 0 },
+  { medicine_id: 'butox', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+  { medicine_id: 'butox', species: 'far', product_type: 'kott', period_days: 35, notes: 'SPC: 35 days sheep meat.', zero_day_allowed: 0 },
+
+  // Bayticol (flumethrin pour-on)
+  { medicine_id: 'bayticol', species: 'notkreatur', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days cattle meat. Flumethrin pour-on.', zero_day_allowed: 0 },
+  { medicine_id: 'bayticol', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+
+  // Taktic (amitraz)
+  { medicine_id: 'taktic', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat. Amitraz dip.', zero_day_allowed: 0 },
+  { medicine_id: 'taktic', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for topical application.', zero_day_allowed: 1 },
+  { medicine_id: 'taktic', species: 'svin', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day pig meat.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Hormones (therapeutic)
+  // ================================================================
 
   // Estrumate (cloprostenol — prostaglandin)
   { medicine_id: 'estrumate', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'estrumate', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
   { medicine_id: 'estrumate', species: 'svin', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day pig meat.', zero_day_allowed: 0 },
 
+  // Planate (cloprostenol)
+  { medicine_id: 'planate', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat.', zero_day_allowed: 0 },
+  { medicine_id: 'planate', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+  { medicine_id: 'planate', species: 'svin', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day pig meat.', zero_day_allowed: 0 },
+
   // Receptal (buserelin — GnRH agonist)
   { medicine_id: 'receptal', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal.', zero_day_allowed: 1 },
   { medicine_id: 'receptal', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
 
+  // Fertagyl (gonadorelin — GnRH)
+  { medicine_id: 'fertagyl', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal. Endogenous hormone analogue.', zero_day_allowed: 1 },
+  { medicine_id: 'fertagyl', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+
   // PRID Delta (progesterone — vaginal insert)
   { medicine_id: 'prid-delta', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal after device removal.', zero_day_allowed: 1 },
   { medicine_id: 'prid-delta', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+
+  // Cue-Mate (progesterone — vaginal insert)
+  { medicine_id: 'cue-mate', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal after device removal.', zero_day_allowed: 1 },
+  { medicine_id: 'cue-mate', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
 
   // Oxytocin
   { medicine_id: 'oxytocin-vet', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal. Endogenous hormone.', zero_day_allowed: 1 },
@@ -1154,18 +2093,86 @@ const withdrawalPeriods: {
   { medicine_id: 'oxytocin-vet', species: 'svin', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal.', zero_day_allowed: 1 },
   { medicine_id: 'oxytocin-vet', species: 'far', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal.', zero_day_allowed: 1 },
 
-  // ---- Corticosteroids ----
+  // ================================================================
+  //  Anaesthetics / Sedation (food-producing animals)
+  // ================================================================
+
+  // Xylazin (Rompun — food species)
+  { medicine_id: 'xylazin-vet', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat. Alpha-2 agonist sedative.', zero_day_allowed: 0 },
+  { medicine_id: 'xylazin-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+
+  // Ketaminol (ketamine — food species)
+  { medicine_id: 'ketaminol', species: 'notkreatur', product_type: 'kott', period_days: 3, notes: 'SPC: 3 days cattle meat. Rapid metabolism.', zero_day_allowed: 0 },
+  { medicine_id: 'ketaminol', species: 'notkreatur', product_type: 'mjolk', period_days: 1, notes: 'SPC: 24 hours milk.', zero_day_allowed: 0 },
+
+  // Isofluran (inhalation — food species)
+  { medicine_id: 'isofluran-vet', species: 'notkreatur', product_type: 'kott', period_days: 2, notes: 'SPC: 2 days cattle meat. Inhalation anaesthetic — minimal residues.', zero_day_allowed: 0 },
+  { medicine_id: 'isofluran-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 1, notes: 'SPC: 24 hours milk.', zero_day_allowed: 0 },
+  { medicine_id: 'isofluran-vet', species: 'svin', product_type: 'kott', period_days: 2, notes: 'SPC: 2 days pig meat.', zero_day_allowed: 0 },
+  { medicine_id: 'isofluran-vet', species: 'far', product_type: 'kott', period_days: 2, notes: 'SPC: 2 days sheep meat.', zero_day_allowed: 0 },
+
+  // Lidokain (lidocaine — local anaesthetic, food species)
+  { medicine_id: 'lidokain-vet', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat. Local anaesthetic.', zero_day_allowed: 0 },
+  { medicine_id: 'lidokain-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for local infiltration.', zero_day_allowed: 1 },
+  { medicine_id: 'lidokain-vet', species: 'svin', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day pig meat.', zero_day_allowed: 0 },
+  { medicine_id: 'lidokain-vet', species: 'far', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day sheep meat.', zero_day_allowed: 0 },
+
+  // Furosemid (diuretic — food species)
+  { medicine_id: 'furosemid-vet', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat.', zero_day_allowed: 0 },
+  { medicine_id: 'furosemid-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 1, notes: 'SPC: 24 hours milk.', zero_day_allowed: 0 },
+
+  // Atropin (food species)
+  { medicine_id: 'atropin-vet', species: 'notkreatur', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day cattle meat. Anticholinergic.', zero_day_allowed: 0 },
+  { medicine_id: 'atropin-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+  { medicine_id: 'atropin-vet', species: 'svin', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day pig meat.', zero_day_allowed: 0 },
+
+  // Imaverol (enilconazole topical — food species)
+  { medicine_id: 'imaverol', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal for topical antifungal.', zero_day_allowed: 1 },
+  { medicine_id: 'imaverol', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for topical application.', zero_day_allowed: 1 },
+
+  // Butorphanol (horse — food-producing equine)
+  { medicine_id: 'butorphanol-vet', species: 'hast', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day horse meat. Opioid analgesic.', zero_day_allowed: 0 },
+
+  // ================================================================
+  //  Corticosteroids
+  // ================================================================
 
   // Dexafort (dexamethasone)
   { medicine_id: 'dexafort', species: 'notkreatur', product_type: 'kott', period_days: 16, notes: 'SPC: 16 days cattle meat.', zero_day_allowed: 0 },
   { medicine_id: 'dexafort', species: 'notkreatur', product_type: 'mjolk', period_days: 3, notes: 'SPC: 72 hours milk.', zero_day_allowed: 0 },
   { medicine_id: 'dexafort', species: 'svin', product_type: 'kott', period_days: 8, notes: 'SPC: 8 days pig meat.', zero_day_allowed: 0 },
 
-  // ---- Calcium / supportive ----
+  // ================================================================
+  //  Calcium / supportive
+  // ================================================================
 
   // Calciject (calcium gluconate — no withdrawal)
   { medicine_id: 'calcium-vet', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'SPC: zero meat withdrawal. Essential mineral supplement.', zero_day_allowed: 1 },
   { medicine_id: 'calcium-vet', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal.', zero_day_allowed: 1 },
+
+  // ================================================================
+  //  Vaccines (zero withdrawal for food safety, except as noted)
+  // ================================================================
+  { medicine_id: 'bovilis-bvd', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'bovilis-bvd', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'Vaccine: zero milk withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'bovilis-ibr', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'bovilis-ibr', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'Vaccine: zero milk withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'covexin', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'covexin', species: 'far', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'rispoval-rs-bvd', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'rispoval-rs-bvd', species: 'notkreatur', product_type: 'mjolk', period_days: 0, notes: 'Vaccine: zero milk withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'bravoxin-10', species: 'notkreatur', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'bravoxin-10', species: 'far', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'heptavac-p', species: 'far', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'porcilis-porcoli', species: 'svin', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'porcilis-myco', species: 'svin', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'porcilis-prrs', species: 'svin', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'porcilis-pcv-mhyo', species: 'svin', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'porcilis-lawsonia', species: 'svin', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'ingelvac-circoflex', species: 'svin', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'equilis-prequenza', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'equilis-tetanus', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'proteqflu', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
 ];
 
 console.log(`Inserting ${withdrawalPeriods.length} withdrawal periods...`);
@@ -1201,9 +2208,12 @@ const bannedSubstances: {
   { substance: 'Metronidazole', category: 'Nitroimidazoles (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
   { substance: 'Ipronidazole', category: 'Nitroimidazoles (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
   { substance: 'Ronidazole', category: 'Nitroimidazoles (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
+  { substance: 'Other nitroimidazoles not specifically listed', category: 'Nitroimidazoles (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2 (class prohibition)' },
   { substance: 'Nitrofurans (including furazolidone, furaltadone, nitrofurazone, nitrofurantoin)', category: 'Nitrofurans (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
   { substance: 'Malachite green', category: 'Triphenylmethane dyes (prohibited)', applies_to: 'aquaculture species', regulation_ref: 'EU Regulation 37/2010, Table 2' },
   { substance: 'Crystal violet (gentian violet)', category: 'Triphenylmethane dyes (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
+  { substance: 'Brilliant green', category: 'Triphenylmethane dyes (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
+  { substance: 'Phenylbutazone (bute)', category: 'NSAIDs (prohibited in food animals)', applies_to: 'equines intended for food chain', regulation_ref: 'EU Regulation 37/2010, Table 2; lifetime food chain exclusion if administered' },
 
   // --- EU Council Directive 96/22/EC — Growth promoters ---
   { substance: 'Stilbenes and stilbene derivatives (including diethylstilbestrol/DES)', category: 'Stilbenes (banned growth promoter)', applies_to: 'all food-producing animals', regulation_ref: 'EU Council Directive 96/22/EC Art. 2' },
@@ -1220,16 +2230,24 @@ const bannedSubstances: {
   { substance: 'Ractopamine', category: 'Beta-agonists (banned)', applies_to: 'all food-producing animals', regulation_ref: 'EU Council Directive 96/22/EC; banned in EU entirely' },
   { substance: 'Salbutamol (as growth promoter)', category: 'Beta-agonists (banned growth promoter)', applies_to: 'all food-producing animals', regulation_ref: 'EU Council Directive 96/22/EC Art. 2' },
   { substance: 'Zilpaterol', category: 'Beta-agonists (banned)', applies_to: 'all food-producing animals', regulation_ref: 'EU Council Directive 96/22/EC; banned in EU entirely' },
+  { substance: 'Isoxsuprine', category: 'Beta-agonists (banned)', applies_to: 'all food-producing animals', regulation_ref: 'EU Council Directive 96/22/EC; not authorised for food animals' },
 
-  // --- Additional prohibited substances from 37/2010 amendments ---
-  { substance: 'Other nitroimidazoles not specifically listed', category: 'Nitroimidazoles (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2 (class prohibition)' },
-  { substance: 'Phenylbutazone (bute)', category: 'NSAIDs (prohibited in food animals)', applies_to: 'equines intended for food chain', regulation_ref: 'EU Regulation 37/2010, Table 2; lifetime food chain exclusion if administered' },
+  // --- Additional 37/2010 Table 2 entries ---
+  { substance: 'Strychnine', category: 'Alkaloids (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
+  { substance: 'Dinitrophenol (DNP)', category: 'Toxic compounds (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
+  { substance: 'Carbon tetrachloride', category: 'Halogenated solvents (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2' },
+  { substance: 'Acepromazine', category: 'Phenothiazines (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2 (no MRL — prohibited in food species)' },
+  { substance: 'Olaquindox', category: 'Quinoxalines (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2; formerly used as growth promoter' },
+  { substance: 'Carbadox', category: 'Quinoxalines (prohibited)', applies_to: 'all food-producing animals', regulation_ref: 'EU Regulation 37/2010, Table 2; genotoxic, banned' },
 
   // --- Swedish-specific restrictions (SJVFS 2019:32) ---
   { substance: 'Carbapenems (entire class)', category: 'Antibiotics (banned for veterinary use)', applies_to: 'all animals in Sweden', regulation_ref: 'SJVFS 2019:32 (Jordbruksverket) — total prohibition' },
   { substance: 'Glycopeptides (vancomycin, teicoplanin — entire class)', category: 'Antibiotics (banned for veterinary use)', applies_to: 'all animals in Sweden', regulation_ref: 'SJVFS 2019:32 — reserved for human medicine' },
   { substance: 'Oxazolidinones (linezolid — entire class)', category: 'Antibiotics (banned for veterinary use)', applies_to: 'all animals in Sweden', regulation_ref: 'SJVFS 2019:32 — reserved for human medicine' },
   { substance: 'Lipopeptides (daptomycin — entire class)', category: 'Antibiotics (banned for veterinary use)', applies_to: 'all animals in Sweden', regulation_ref: 'SJVFS 2019:32 — reserved for human medicine' },
+  { substance: 'Tigecycline (glycylcyclines)', category: 'Antibiotics (banned for veterinary use)', applies_to: 'all animals in Sweden', regulation_ref: 'SJVFS 2019:32 — reserved for human medicine' },
+  { substance: 'Polymyxins — colistin IV (systemic use in food animals)', category: 'Antibiotics (restricted)', applies_to: 'food-producing animals in Sweden', regulation_ref: 'SJVFS 2019:32 — systemic use banned; topical/intramammary only under strict conditions' },
+  { substance: 'Rifampicin', category: 'Antibiotics (restricted)', applies_to: 'food-producing animals in Sweden', regulation_ref: 'SJVFS 2019:32 — reserved for human TB treatment; veterinary use prohibited for food animals' },
 ];
 
 console.log(`Inserting ${bannedSubstances.length} banned substances...`);
@@ -1546,22 +2564,26 @@ writeFileSync('data/coverage.json', JSON.stringify({
     'EU Regulation 2019/6 Art. 113-115',
   ],
   categories: {
-    antibiotics_penicillins: 6,
-    antibiotics_tetracyclines: 4,
+    antibiotics_penicillins: 9,
+    antibiotics_tetracyclines: 6,
     antibiotics_macrolides: 5,
-    antibiotics_fluoroquinolones: 2,
-    antibiotics_cephalosporins: 4,
+    antibiotics_fluoroquinolones: 3,
+    antibiotics_cephalosporins: 5,
     antibiotics_sulfonamides: 2,
     antibiotics_florfenicol: 2,
     antibiotics_lincosamides: 1,
-    antibiotics_intramammary: 2,
-    nsaids: 7,
+    antibiotics_intramammary: 9,
+    antibiotics_topical: 4,
+    antibiotics_injectable_combo: 1,
+    nsaids: 12,
     antiparasitics_avermectins: 6,
-    antiparasitics_benzimidazoles: 3,
+    antiparasitics_benzimidazoles: 4,
     antiparasitics_imidazothiazoles: 1,
-    antiparasitics_fasciolicides: 2,
-    vaccines: 7,
-    hormones_therapeutic: 4,
+    antiparasitics_fasciolicides: 3,
+    antiparasitics_ectoparasiticides: 5,
+    vaccines: 20,
+    hormones_reproduction: 7,
+    anaesthetics_sedation: 10,
     other_therapeutic: 2,
     companion_animal: 2,
   },
@@ -1597,10 +2619,3 @@ console.log('  - FASS Vet (SPC withdrawal periods)');
 console.log('  - Jordbruksverket / SJVFS 2019:32');
 console.log('  - EMA EPAR product information');
 console.log('  - SVA Svarm (resistance monitoring)');
-console.log('  - EU Regulation 37/2010 Table 2 (prohibited substances)');
-console.log('  - EU Council Directive 96/22/EC (banned growth promoters)');
-console.log('  - EU Regulation 2019/6 Art. 113-115 (cascade rules)');
-console.log('');
-console.log('WARNING: Withdrawal periods are safety-critical. Always verify');
-console.log('against the current SPC from Lakemedelsverket before treatment.');
-console.log('');
