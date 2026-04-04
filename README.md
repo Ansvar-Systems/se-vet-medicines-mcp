@@ -1,27 +1,17 @@
-# Sweden Crop Nutrients MCP
+# Sweden Veterinary Medicines MCP
 
-[![CI](https://github.com/ansvar-systems/se-vet-medicines-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ansvar-systems/se-vet-medicines-mcp/actions/workflows/ci.yml)
-[![GHCR](https://github.com/ansvar-systems/se-vet-medicines-mcp/actions/workflows/ghcr-build.yml/badge.svg)](https://github.com/ansvar-systems/se-vet-medicines-mcp/actions/workflows/ghcr-build.yml)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+Swedish veterinary medicine data: authorised products, withdrawal periods, banned substances, prescribing cascade rules, and record-keeping requirements. Query Swedish veterinary medicine data through the [Model Context Protocol](https://modelcontextprotocol.io).
 
-UK crop nutrient recommendations via the [Model Context Protocol](https://modelcontextprotocol.io). Query AHDB RB209 data, soil types, NPK planning, and commodity prices -- all from your AI assistant.
-
-Part of [Ansvar Open Agriculture](https://ansvar.eu/open-agriculture).
-
-## Why This Exists
-
-Farmers and agronomists need quick access to nutrient recommendation tables, commodity prices, and soil data. This information is published by AHDB and DEFRA but is locked in PDFs, spreadsheets, and web pages that AI assistants cannot query directly. This MCP server makes it all searchable.
+> **Data sources:** Lakemedelsverket (Swedish Medical Products Agency), Jordbruksverket (Swedish Board of Agriculture), EMA (European Medicines Agency). Licensed under applicable Swedish open data terms.
 
 ## Quick Start
 
-### Claude Desktop
-
-Add to `claude_desktop_config.json`:
+### Claude Desktop / Claude Code
 
 ```json
 {
   "mcpServers": {
-    "uk-crop-nutrients": {
+    "se-vet-medicines": {
       "command": "npx",
       "args": ["-y", "@ansvar/se-vet-medicines-mcp"]
     }
@@ -29,87 +19,45 @@ Add to `claude_desktop_config.json`:
 }
 ```
 
-### Claude Code
-
-```bash
-claude mcp add uk-crop-nutrients npx @ansvar/se-vet-medicines-mcp
-```
-
-### Streamable HTTP (remote)
+### Streamable HTTP (Docker)
 
 ```
-https://mcp.ansvar.eu/se-crop-nutrients/mcp
+https://mcp.ansvar.eu/se-vet-medicines/mcp
 ```
-
-### Docker (self-hosted)
-
-```bash
-docker run -p 3000:3000 ghcr.io/ansvar-systems/se-vet-medicines-mcp:latest
-```
-
-### npm (stdio)
-
-```bash
-npx @ansvar/se-vet-medicines-mcp
-```
-
-## Example Queries
-
-Ask your AI assistant:
-
-- "What NPK does winter wheat need on heavy clay soil?"
-- "What's the current price of spring barley?"
-- "Calculate gross margin for 8.5 t/ha winter wheat at 520/ha input costs"
-- "What soil group is sandy loam in RB209?"
-- "Search for nitrogen recommendations for oilseed rape"
-
-## Stats
-
-| Metric | Value |
-|--------|-------|
-| Tools | 10 (3 meta + 7 domain) |
-| Jurisdiction | GB |
-| Data sources | AHDB RB209, DEFRA Price Indices, AHDB Market Data |
-| License (data) | Open Government Licence v3 |
-| License (code) | Apache-2.0 |
-| Transport | stdio + Streamable HTTP |
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `about` | Server metadata and links |
-| `list_sources` | Data sources with freshness info |
-| `check_data_freshness` | Staleness status and refresh command |
-| `search_crop_requirements` | FTS5 search across crop and nutrient data |
-| `get_nutrient_plan` | NPK recommendation for crop + soil type |
-| `get_soil_classification` | Soil group and characteristics |
-| `list_crops` | All crops, optionally by group |
-| `get_crop_details` | Full crop profile with nutrient offtake |
-| `get_commodity_price` | Latest price with source attribution |
-| `calculate_margin` | Gross margin estimate |
+| `about` | Get server metadata: name, version, coverage, data sources, and links. |
+| `list_sources` | List all data sources with authority, URL, license, and freshness info. |
+| `check_data_freshness` | Check when data was last ingested, staleness status, and how to trigger a refresh. |
+| `search_authorised_medicines` | Search Swedish authorised veterinary medicines by name, species, substance, or pharmaceutical form. |
+| `get_medicine_details` | Get full details for a specific veterinary medicine: substances, species, form, holder, SPC link, and withdrawal periods. |
+| `get_withdrawal_period` | Get withdrawal period for a medicine in a specific species and product type. |
+| `check_cascade_rules` | Get the Swedish veterinary prescribing cascade hierarchy when no authorised product exists. |
+| `get_medicine_record_requirements` | Get record-keeping requirements for veterinary medicine treatments (stalljournal, retention periods). |
+| `search_by_active_substance` | Find all medicines containing a specific active substance. Also checks ban status for food-producing animals. |
+| `get_banned_substances` | List substances banned for use in food-producing animals under Swedish and EU regulations. |
 
-See [TOOLS.md](TOOLS.md) for full parameter documentation.
+## Example Queries
 
-## Security Scanning
+- "Vilka veterinarlakemedel ar godkanda for notkreatur i Sverige?" (What veterinary medicines are authorised for cattle in Sweden?)
+- "What is the withdrawal period for Metacam in dairy cows?"
+- "Vilka substanser ar forbjudna for livsmedelsproducerande djur?" (Which substances are banned for food-producing animals?)
+- "Show the prescribing cascade rules for horses in Sweden"
 
-This repository runs 6 security checks on every push:
+## Stats
 
-- **CodeQL** -- static analysis for JavaScript/TypeScript
-- **Gitleaks** -- secret detection across full history
-- **Dependency review** -- via Dependabot
-- **Container scanning** -- via GHCR build pipeline
+| Metric | Value |
+|--------|-------|
+| Jurisdiction | SE (Sweden) |
+| Tools | 10 |
+| Transport | stdio + Streamable HTTP |
+| License | Apache-2.0 |
 
-See [SECURITY.md](SECURITY.md) for reporting policy.
+## Links
 
-## Disclaimer
-
-This tool provides reference data for informational purposes only. It is not professional agricultural advice. See [DISCLAIMER.md](DISCLAIMER.md).
-
-## Contributing
-
-Issues and pull requests welcome. For security vulnerabilities, email security@ansvar.eu (do not open a public issue).
-
-## License
-
-Apache-2.0. Data sourced under Open Government Licence v3.
+- [Ansvar MCP Network](https://ansvar.eu/open-agriculture)
+- [GitHub](https://github.com/ansvar-systems/se-vet-medicines-mcp)
+- [All Swedish Agriculture MCPs](https://mcp.ansvar.eu)

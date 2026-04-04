@@ -1,22 +1,50 @@
 schema_version: "1.0"
-mcp_name: "Sweden Crop Nutrients MCP"
+mcp_name: "Sweden Veterinary Medicines MCP"
 category: "domain_intelligence"
 
 sources:
-  # TODO: Add Sweden-specific data sources here.
-  # Example:
-  # - name: "National Agriculture Advisory Service"
-  #   authority: "Ministry of Agriculture"
-  #   official_url: "https://example.gov.se/agriculture"
-  #   retrieval_method: "HTML_SCRAPE"
-  #   format: "HTML"
-  #   authentication: "none"
-  #   update_frequency: "annual"
-  #   license:
-  #     type: "Open Government Licence"
-  #     url: "https://example.gov.se/licence"
-  #   coverage:
-  #     scope: "National agricultural data"
-  #   languages:
-  #     - "se"
-  []
+  - name: "Lakemedelsverket (Swedish Medical Products Agency)"
+    authority: "Lakemedelsverket"
+    official_url: "https://www.lakemedelsverket.se"
+    retrieval_method: "MANUAL_CURATION"
+    format: "HTML/PDF"
+    authentication: "none"
+    update_frequency: "as_amended"
+    license:
+      type: "Swedish Government Public Domain"
+      url: "https://www.lakemedelsverket.se"
+    coverage:
+      scope: "Authorised veterinary medicines, SPCs, withdrawal periods, banned substances"
+    languages:
+      - "sv"
+
+  - name: "Jordbruksverket (Swedish Board of Agriculture)"
+    authority: "Jordbruksverket"
+    official_url: "https://jordbruksverket.se"
+    retrieval_method: "MANUAL_CURATION"
+    format: "HTML/PDF"
+    authentication: "none"
+    update_frequency: "as_amended"
+    license:
+      type: "Swedish Government Public Domain"
+      url: "https://jordbruksverket.se"
+    coverage:
+      scope: "Prescribing cascade rules, record-keeping requirements (stalljournal), food-producing animal regulations"
+    languages:
+      - "sv"
+
+  - name: "EMA (European Medicines Agency) -- Union Product Database"
+    authority: "European Medicines Agency"
+    official_url: "https://www.ema.europa.eu"
+    retrieval_method: "MANUAL_CURATION"
+    format: "HTML/PDF"
+    authentication: "none"
+    update_frequency: "as_amended"
+    license:
+      type: "EU public data"
+      url: "https://www.ema.europa.eu/en/legal-notice"
+    coverage:
+      scope: "EU-wide veterinary medicine authorisations, MRL regulations, banned substance lists"
+    languages:
+      - "en"
+      - "sv"

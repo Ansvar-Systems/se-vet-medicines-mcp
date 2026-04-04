@@ -1,16 +1,14 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.Ansvar-Systems/uk-crop-nutrients",
-  "description": "UK crop nutrient recommendations \u2014 RB209 NPK planning, soil types, commodity prices",
-  "repository": {
-    "url": "https://github.com/Ansvar-Systems/uk-crop-nutrients-mcp",
-    "source": "github"
-  },
-  "version": "0.1.0",
-  "remotes": [
-    {
-      "type": "streamable-http",
-      "url": "https://mcp.ansvar.eu/uk-crop-nutrients/mcp"
-    }
-  ]
+  "name": "se-vet-medicines-mcp",
+  "display_name": "Sweden Veterinary Medicines MCP",
+  "description": "Swedish veterinary medicines via MCP -- Lakemedelsverket, withdrawal periods, cascade",
+  "vendor": "Ansvar Systems",
+  "vendor_url": "https://ansvar.eu",
+  "source_url": "https://github.com/ansvar-systems/se-vet-medicines-mcp",
+  "license": "Apache-2.0",
+  "runtime": "node",
+  "transport": ["stdio", "streamable-http"],
+  "endpoints": {
+    "streamable-http": "https://mcp.ansvar.eu/se-vet-medicines/mcp"
+  }
 }
