@@ -1,0 +1,16 @@
+{
+  "mcp_name": "Sweden Veterinary Medicines MCP",
+  "jurisdiction": "SE",
+  "build_date": "2026-04-04",
+  "medicines_count": 20,
+  "withdrawal_periods_count": 47,
+  "banned_substances_count": 21,
+  "cascade_rules_count": 4,
+  "record_requirements_count": 8,
+  "data_sources": [
+    "Lakemedelsverket (Swedish Medical Products Agency)",
+    "Jordbruksverket (Swedish Board of Agriculture)",
+    "EMA (European Medicines Agency)"
+  ],
+  "status": "populated"
+}

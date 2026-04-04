@@ -42,57 +42,63 @@ export function createDatabase(dbPath?: string): Database {
 
 function initSchema(db: BetterSqlite3.Database): void {
   db.exec(`
-    CREATE TABLE IF NOT EXISTS crops (
+    CREATE TABLE IF NOT EXISTS medicines (
       id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      crop_group TEXT NOT NULL,
-      typical_yield_t_ha REAL,
-      nutrient_offtake_n REAL,
-      nutrient_offtake_p2o5 REAL,
-      nutrient_offtake_k2o REAL,
-      growth_stages TEXT,
+      product_name TEXT NOT NULL,
+      registration_number TEXT,
+      active_substances TEXT,
+      species_authorised TEXT,
+      pharmaceutical_form TEXT,
+      legal_category TEXT,
+      ma_holder TEXT,
+      spc_url TEXT,
+      status TEXT,
       jurisdiction TEXT NOT NULL DEFAULT 'SE'
     );
 
-    CREATE TABLE IF NOT EXISTS soil_types (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      soil_group INTEGER,
-      texture TEXT,
-      drainage_class TEXT,
-      description TEXT
-    );
-
-    CREATE TABLE IF NOT EXISTS nutrient_recommendations (
+    CREATE TABLE IF NOT EXISTS withdrawal_periods (
       id INTEGER PRIMARY KEY,
-      crop_id TEXT REFERENCES crops(id),
-      soil_group INTEGER,
-      sns_index INTEGER,
-      previous_crop_group TEXT,
-      n_rec_kg_ha REAL,
-      p_rec_kg_ha REAL,
-      k_rec_kg_ha REAL,
-      s_rec_kg_ha REAL,
+      medicine_id TEXT REFERENCES medicines(id),
+      species TEXT NOT NULL,
+      product_type TEXT,
+      period_days INTEGER NOT NULL,
       notes TEXT,
-      rb209_section TEXT,
+      zero_day_allowed INTEGER DEFAULT 0,
       jurisdiction TEXT NOT NULL DEFAULT 'SE'
     );
 
-    CREATE TABLE IF NOT EXISTS commodity_prices (
+    CREATE TABLE IF NOT EXISTS banned_substances (
       id INTEGER PRIMARY KEY,
-      crop_id TEXT REFERENCES crops(id),
-      market TEXT,
-      price_per_tonne REAL,
-      currency TEXT DEFAULT 'GBP',
-      price_source TEXT NOT NULL,
-      published_date TEXT,
-      retrieved_at TEXT,
+      substance TEXT NOT NULL,
+      category TEXT,
+      applies_to TEXT,
+      regulation_ref TEXT,
+      jurisdiction TEXT NOT NULL DEFAULT 'SE'
+    );
+
+    CREATE TABLE IF NOT EXISTS cascade_rules (
+      id INTEGER PRIMARY KEY,
+      step_order INTEGER NOT NULL,
+      description TEXT NOT NULL,
+      documentation_required TEXT,
+      default_withdrawal_meat_days INTEGER,
+      default_withdrawal_milk_days INTEGER,
       source TEXT,
       jurisdiction TEXT NOT NULL DEFAULT 'SE'
     );
 
+    CREATE TABLE IF NOT EXISTS record_requirements (
+      id INTEGER PRIMARY KEY,
+      holding_type TEXT,
+      species TEXT,
+      requirement TEXT NOT NULL,
+      retention_period TEXT,
+      regulation_ref TEXT,
+      jurisdiction TEXT NOT NULL DEFAULT 'SE'
+    );
+
     CREATE VIRTUAL TABLE IF NOT EXISTS search_index USING fts5(
-      title, body, crop_group, jurisdiction
+      title, body, species, jurisdiction
     );
 
     CREATE TABLE IF NOT EXISTS db_metadata (
@@ -101,25 +107,25 @@ function initSchema(db: BetterSqlite3.Database): void {
     );
 
     INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('schema_version', '1.0');
-    INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('mcp_name', 'Sweden Crop Nutrients MCP');
+    INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('mcp_name', 'Sweden Veterinary Medicines MCP');
     INSERT OR IGNORE INTO db_metadata (key, value) VALUES ('jurisdiction', 'SE');
   `);
 }
 
-const FTS_COLUMNS = ['title', 'body', 'crop_group', 'jurisdiction'];
+const FTS_COLUMNS = ['title', 'body', 'species', 'jurisdiction'];
 
 export function ftsSearch(
   db: Database,
   query: string,
   limit: number = 20
-): { title: string; body: string; crop_group: string; jurisdiction: string; rank: number }[] {
+): { title: string; body: string; species: string; jurisdiction: string; rank: number }[] {
   const { results } = tieredFtsSearch(db, 'search_index', FTS_COLUMNS, query, limit);
-  return results as { title: string; body: string; crop_group: string; jurisdiction: string; rank: number }[];
+  return results as { title: string; body: string; species: string; jurisdiction: string; rank: number }[];
 }
 
 /**
  * Tiered FTS5 search with automatic fallback.
- * Tiers: exact phrase → AND → prefix → stemmed prefix → OR → LIKE
+ * Tiers: exact phrase -> AND -> prefix -> stemmed prefix -> OR -> LIKE
  */
 export function tieredFtsSearch(
   db: Database,
@@ -168,8 +174,8 @@ export function tieredFtsSearch(
     if (results.length > 0) return { tier: 'or', results };
   }
 
-  // Tier 6: LIKE fallback — bypasses FTS, searches base table with real column names
-  const baseCols = ['name', 'crop_group'];
+  // Tier 6: LIKE fallback — bypasses FTS, searches medicines table with real column names
+  const baseCols = ['product_name', 'active_substances', 'species_authorised'];
   const likeConditions = words.map(() =>
     `(${baseCols.map(c => `${c} LIKE ?`).join(' OR ')})`
   ).join(' AND ');
@@ -178,7 +184,7 @@ export function tieredFtsSearch(
   );
   try {
     const likeResults = db.all<Record<string, unknown>>(
-      `SELECT name as title, COALESCE(growth_stages, '') as body, crop_group, jurisdiction FROM crops WHERE ${likeConditions} LIMIT ?`,
+      `SELECT product_name as title, COALESCE(active_substances, '') as body, COALESCE(species_authorised, '') as species, jurisdiction FROM medicines WHERE ${likeConditions} LIMIT ?`,
       [...likeParams, limit]
     );
     if (likeResults.length > 0) return { tier: 'like', results: likeResults };
@@ -205,14 +211,15 @@ function tryFts(
 
 function sanitizeFtsInput(query: string): string {
   return query
-    .replace(/["""''„‚«»]/g, '"')
-    .replace(/[^a-zA-Z0-9\s*"_-]/g, ' ')
+    .replace(/["""'',,<<>>]/g, '"')
+    .replace(/[^a-zA-Z0-9\s*"_\-\u00E5\u00E4\u00F6\u00C4\u00C5\u00D6]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
 function stemWord(word: string): string {
   return word
+    .replace(/(arna|erna|orna|ade|ande|ingar|ningen|erna|ade)$/i, '')
     .replace(/(ies)$/i, 'y')
     .replace(/(ying|tion|ment|ness|able|ible|ous|ive|ing|ers|ed|es|er|ly|s)$/i, '');
 }

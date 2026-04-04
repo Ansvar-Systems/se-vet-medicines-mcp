@@ -17,39 +17,39 @@ export function handleListSources(db: Database): { sources: Source[]; _meta: Ret
 
   const sources: Source[] = [
     {
-      name: 'AHDB RB209 Nutrient Management Guide',
-      authority: 'Agriculture and Horticulture Development Board',
-      official_url: 'https://ahdb.org.uk/nutrient-management-guide',
-      retrieval_method: 'HTML_SCRAPE',
+      name: 'Lakemedelsverket — Veterinary Medicines Register',
+      authority: 'Swedish Medical Products Agency (Lakemedelsverket)',
+      official_url: 'https://www.lakemedelsverket.se/sv/sok-lakemedelsfakta',
+      retrieval_method: 'MANUAL_EXTRACTION',
+      update_frequency: 'quarterly',
+      license: 'Swedish public records (offentlighetsprincipen)',
+      coverage: 'All veterinary medicines authorised in Sweden: products, active substances, species, withdrawal periods',
+      last_retrieved: lastIngest?.value,
+    },
+    {
+      name: 'Jordbruksverket — Veterinary Prescribing and Record Regulations',
+      authority: 'Swedish Board of Agriculture (Jordbruksverket)',
+      official_url: 'https://jordbruksverket.se/djur/djurhalsa',
+      retrieval_method: 'MANUAL_EXTRACTION',
       update_frequency: 'annual',
-      license: 'Open Government Licence v3',
-      coverage: 'NPK recommendations for all major UK crops by soil type and SNS index',
+      license: 'Swedish public records (offentlighetsprincipen)',
+      coverage: 'Prescribing cascade rules, record-keeping requirements, banned substances for food-producing animals',
       last_retrieved: lastIngest?.value,
     },
     {
-      name: 'DEFRA Agricultural Price Indices',
-      authority: 'Department for Environment, Food and Rural Affairs',
-      official_url: 'https://www.gov.uk/government/statistics/agricultural-price-indices',
-      retrieval_method: 'BULK_DOWNLOAD',
-      update_frequency: 'monthly',
-      license: 'Open Government Licence v3',
-      coverage: 'UK agricultural commodity prices',
-      last_retrieved: lastIngest?.value,
-    },
-    {
-      name: 'AHDB Market Data',
-      authority: 'Agriculture and Horticulture Development Board',
-      official_url: 'https://ahdb.org.uk/cereals-oilseeds/cereal-and-oilseed-markets',
-      retrieval_method: 'HTML_SCRAPE',
-      update_frequency: 'weekly',
-      license: 'Open Government Licence v3',
-      coverage: 'UK delivered and ex-farm cereal and oilseed prices',
+      name: 'EMA — Union Product Database',
+      authority: 'European Medicines Agency',
+      official_url: 'https://medicines.health.europa.eu/veterinary',
+      retrieval_method: 'MANUAL_EXTRACTION',
+      update_frequency: 'quarterly',
+      license: 'EMA Open Data',
+      coverage: 'Centrally authorised veterinary medicines valid across EU member states including Sweden',
       last_retrieved: lastIngest?.value,
     },
   ];
 
   return {
     sources,
-    _meta: buildMeta({ source_url: 'https://ahdb.org.uk/nutrient-management-guide' }),
+    _meta: buildMeta({ source_url: 'https://www.lakemedelsverket.se/sv/sok-lakemedelsfakta' }),
   };
 }

@@ -11,13 +11,13 @@ import { createDatabase } from './db.js';
 import { handleAbout } from './tools/about.js';
 import { handleListSources } from './tools/list-sources.js';
 import { handleCheckFreshness } from './tools/check-freshness.js';
-import { handleSearchCropRequirements } from './tools/search-crop-requirements.js';
-import { handleGetNutrientPlan } from './tools/get-nutrient-plan.js';
-import { handleGetSoilClassification } from './tools/get-soil-classification.js';
-import { handleListCrops } from './tools/list-crops.js';
-import { handleGetCropDetails } from './tools/get-crop-details.js';
-import { handleGetCommodityPrice } from './tools/get-commodity-price.js';
-import { handleCalculateMargin } from './tools/calculate-margin.js';
+import { handleSearchAuthorisedMedicines } from './tools/search-authorised-medicines.js';
+import { handleGetMedicineDetails } from './tools/get-medicine-details.js';
+import { handleGetWithdrawalPeriod } from './tools/get-withdrawal-period.js';
+import { handleCheckCascadeRules } from './tools/check-cascade-rules.js';
+import { handleGetMedicineRecordRequirements } from './tools/get-medicine-record-requirements.js';
+import { handleSearchByActiveSubstance } from './tools/search-by-active-substance.js';
+import { handleGetBannedSubstances } from './tools/get-banned-substances.js';
 
 const SERVER_NAME = 'se-vet-medicines-mcp';
 const SERVER_VERSION = '0.1.0';
@@ -39,141 +39,141 @@ const TOOLS = [
     inputSchema: { type: 'object' as const, properties: {} },
   },
   {
-    name: 'search_crop_requirements',
-    description: 'Search crop nutrient requirements, soil data, and recommendations. Use for broad queries about crops and nutrients.',
+    name: 'search_authorised_medicines',
+    description: 'Search Swedish authorised veterinary medicines by name, species, substance, or pharmaceutical form. Use for broad queries.',
     inputSchema: {
       type: 'object' as const,
       properties: {
-        query: { type: 'string', description: 'Free-text search query' },
-        crop_group: { type: 'string', description: 'Filter by crop group (e.g. cereals, oilseeds)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        query: { type: 'string', description: 'Free-text search query (product name, substance, etc.)' },
+        species: { type: 'string', description: 'Filter by target species (e.g. nötkreatur, svin, hund)' },
+        pharmaceutical_form: { type: 'string', description: 'Filter by form (e.g. injektionsvätska, tablett)' },
+        active_substance: { type: 'string', description: 'Filter by active substance name' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
         limit: { type: 'number', description: 'Max results (default: 20, max: 50)' },
       },
       required: ['query'],
     },
   },
   {
-    name: 'get_nutrient_plan',
-    description: 'Get NPK fertiliser recommendation for a specific crop and soil type. Based on AHDB RB209.',
+    name: 'get_medicine_details',
+    description: 'Get full details for a specific veterinary medicine: substances, species, form, holder, SPC link, and withdrawal periods.',
     inputSchema: {
       type: 'object' as const,
       properties: {
-        crop: { type: 'string', description: 'Crop ID or name (e.g. winter-wheat)' },
-        soil_type: { type: 'string', description: 'Soil type ID or name (e.g. heavy-clay)' },
-        sns_index: { type: 'number', description: 'Soil Nitrogen Supply index (0-6)' },
-        previous_crop: { type: 'string', description: 'Previous crop group for rotation adjustment' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        medicine_id: { type: 'string', description: 'Medicine ID (e.g. metacam-inj, apoquel)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
       },
-      required: ['crop', 'soil_type'],
+      required: ['medicine_id'],
     },
   },
   {
-    name: 'get_soil_classification',
-    description: 'Get soil group, characteristics, and drainage class for a soil type or texture.',
+    name: 'get_withdrawal_period',
+    description: 'Get withdrawal period for a medicine in a specific species and product type. CRITICAL for food safety — incorrect values contaminate the food chain.',
     inputSchema: {
       type: 'object' as const,
       properties: {
-        soil_type: { type: 'string', description: 'Soil type ID or name' },
-        texture: { type: 'string', description: 'Soil texture (e.g. clay, sand, loam)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        medicine_id: { type: 'string', description: 'Medicine ID' },
+        species: { type: 'string', description: 'Target species (e.g. nötkreatur, svin, får)' },
+        product_type: { type: 'string', description: 'Product type: kött (meat), mjölk (milk), ägg (eggs)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
+      },
+      required: ['medicine_id', 'species'],
+    },
+  },
+  {
+    name: 'check_cascade_rules',
+    description: 'Get the Swedish veterinary prescribing cascade hierarchy. Shows which steps a vet must follow when no authorised product exists for a species/condition.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        species: { type: 'string', description: 'Species being treated' },
+        condition: { type: 'string', description: 'Clinical condition or indication' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
+      },
+      required: ['species'],
+    },
+  },
+  {
+    name: 'get_medicine_record_requirements',
+    description: 'Get record-keeping requirements for veterinary medicine treatments in Sweden. Covers stalljournal, retention periods, and regulatory references.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        species: { type: 'string', description: 'Filter by species' },
+        holding_type: { type: 'string', description: 'Filter by holding type (e.g. mjölkgård, slaktgrisproduktion)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
       },
     },
   },
   {
-    name: 'list_crops',
-    description: 'List all crops in the database, optionally filtered by crop group.',
+    name: 'search_by_active_substance',
+    description: 'Find all medicines containing a specific active substance. Also checks if the substance is banned for food-producing animals.',
     inputSchema: {
       type: 'object' as const,
       properties: {
-        crop_group: { type: 'string', description: 'Filter by crop group (e.g. cereals)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        active_substance: { type: 'string', description: 'Active substance name (e.g. meloxicam, ceftiofur, enrofloxacin)' },
+        species: { type: 'string', description: 'Filter by target species' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
       },
+      required: ['active_substance'],
     },
   },
   {
-    name: 'get_crop_details',
-    description: 'Get full profile for a crop: nutrient offtake, typical yields, growth stages.',
+    name: 'get_banned_substances',
+    description: 'List substances banned for use in food-producing animals under Swedish and EU regulations. Includes chloramphenicol, nitrofurans, hormonal growth promoters.',
     inputSchema: {
       type: 'object' as const,
       properties: {
-        crop: { type: 'string', description: 'Crop ID or name' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
+        species: { type: 'string', description: 'Filter by species' },
+        production_type: { type: 'string', description: 'Filter by production type (e.g. meat, milk, eggs)' },
+        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: SE)' },
       },
-      required: ['crop'],
-    },
-  },
-  {
-    name: 'get_commodity_price',
-    description: 'Get latest commodity price for a crop with source attribution. Warns if data is stale (>14 days).',
-    inputSchema: {
-      type: 'object' as const,
-      properties: {
-        crop: { type: 'string', description: 'Crop ID or name' },
-        market: { type: 'string', description: 'Market type (e.g. ex-farm, delivered)' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
-      },
-      required: ['crop'],
-    },
-  },
-  {
-    name: 'calculate_margin',
-    description: 'Estimate gross margin for a crop. Uses current commodity price if price_per_tonne not provided.',
-    inputSchema: {
-      type: 'object' as const,
-      properties: {
-        crop: { type: 'string', description: 'Crop ID or name' },
-        yield_t_ha: { type: 'number', description: 'Expected yield in tonnes per hectare' },
-        price_per_tonne: { type: 'number', description: 'Override price (GBP/t). If omitted, uses latest market price.' },
-        input_costs: { type: 'number', description: 'Total input costs per hectare (GBP). Default: 0' },
-        jurisdiction: { type: 'string', description: 'ISO 3166-1 alpha-2 code (default: GB)' },
-      },
-      required: ['crop', 'yield_t_ha'],
     },
   },
 ];
 
-const SearchArgsSchema = z.object({
+const SearchMedicineArgsSchema = z.object({
   query: z.string(),
-  crop_group: z.string().optional(),
+  species: z.string().optional(),
+  pharmaceutical_form: z.string().optional(),
+  active_substance: z.string().optional(),
   jurisdiction: z.string().optional(),
   limit: z.number().optional(),
 });
 
-const NutrientPlanArgsSchema = z.object({
-  crop: z.string(),
-  soil_type: z.string(),
-  sns_index: z.number().optional(),
-  previous_crop: z.string().optional(),
+const MedicineDetailsArgsSchema = z.object({
+  medicine_id: z.string(),
   jurisdiction: z.string().optional(),
 });
 
-const SoilArgsSchema = z.object({
-  soil_type: z.string().optional(),
-  texture: z.string().optional(),
+const WithdrawalArgsSchema = z.object({
+  medicine_id: z.string(),
+  species: z.string(),
+  product_type: z.string().optional(),
   jurisdiction: z.string().optional(),
 });
 
-const ListCropsArgsSchema = z.object({
-  crop_group: z.string().optional(),
+const CascadeArgsSchema = z.object({
+  species: z.string(),
+  condition: z.string().optional(),
   jurisdiction: z.string().optional(),
 });
 
-const CropDetailsArgsSchema = z.object({
-  crop: z.string(),
+const RecordArgsSchema = z.object({
+  species: z.string().optional(),
+  holding_type: z.string().optional(),
   jurisdiction: z.string().optional(),
 });
 
-const PriceArgsSchema = z.object({
-  crop: z.string(),
-  market: z.string().optional(),
+const SubstanceSearchArgsSchema = z.object({
+  active_substance: z.string(),
+  species: z.string().optional(),
   jurisdiction: z.string().optional(),
 });
 
-const MarginArgsSchema = z.object({
-  crop: z.string(),
-  yield_t_ha: z.number(),
-  price_per_tonne: z.number().optional(),
-  input_costs: z.number().optional(),
+const BannedArgsSchema = z.object({
+  species: z.string().optional(),
+  production_type: z.string().optional(),
   jurisdiction: z.string().optional(),
 });
 
@@ -205,20 +205,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return textResult(handleListSources(db));
       case 'check_data_freshness':
         return textResult(handleCheckFreshness(db));
-      case 'search_crop_requirements':
-        return textResult(handleSearchCropRequirements(db, SearchArgsSchema.parse(args)));
-      case 'get_nutrient_plan':
-        return textResult(handleGetNutrientPlan(db, NutrientPlanArgsSchema.parse(args)));
-      case 'get_soil_classification':
-        return textResult(handleGetSoilClassification(db, SoilArgsSchema.parse(args)));
-      case 'list_crops':
-        return textResult(handleListCrops(db, ListCropsArgsSchema.parse(args)));
-      case 'get_crop_details':
-        return textResult(handleGetCropDetails(db, CropDetailsArgsSchema.parse(args)));
-      case 'get_commodity_price':
-        return textResult(handleGetCommodityPrice(db, PriceArgsSchema.parse(args)));
-      case 'calculate_margin':
-        return textResult(handleCalculateMargin(db, MarginArgsSchema.parse(args)));
+      case 'search_authorised_medicines':
+        return textResult(handleSearchAuthorisedMedicines(db, SearchMedicineArgsSchema.parse(args)));
+      case 'get_medicine_details':
+        return textResult(handleGetMedicineDetails(db, MedicineDetailsArgsSchema.parse(args)));
+      case 'get_withdrawal_period':
+        return textResult(handleGetWithdrawalPeriod(db, WithdrawalArgsSchema.parse(args)));
+      case 'check_cascade_rules':
+        return textResult(handleCheckCascadeRules(db, CascadeArgsSchema.parse(args)));
+      case 'get_medicine_record_requirements':
+        return textResult(handleGetMedicineRecordRequirements(db, RecordArgsSchema.parse(args)));
+      case 'search_by_active_substance':
+        return textResult(handleSearchByActiveSubstance(db, SubstanceSearchArgsSchema.parse(args)));
+      case 'get_banned_substances':
+        return textResult(handleGetBannedSubstances(db, BannedArgsSchema.parse(args)));
       default:
         return errorResult(`Unknown tool: ${name}`);
     }
