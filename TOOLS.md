@@ -18,7 +18,7 @@ List all data sources with authority, URL, license, and freshness info.
 
 **Parameters:** None
 
-**Returns:** Array of data sources, each with `name`, `authority`, `official_url`, `retrieval_method`, `update_frequency`, `license`, `coverage`, `last_retrieved`.
+**Returns:** Array of 3 sources (Lakemedelsverket, Jordbruksverket, EMA), each with `name`, `authority`, `official_url`, `retrieval_method`, `update_frequency`, `license`, `coverage`, `last_retrieved`.
 
 ---
 
@@ -28,109 +28,121 @@ Check when data was last ingested, staleness status, and how to trigger a refres
 
 **Parameters:** None
 
-**Returns:** `status` (fresh/stale/unknown), `last_ingest`, `days_since_ingest`, `staleness_threshold_days`, `refresh_command`.
+**Returns:** `status` (fresh/stale/unknown), `last_ingest`, `build_date`, `schema_version`, `days_since_ingest`, `staleness_threshold_days` (90), `refresh_command`.
 
 ---
 
 ## Domain Tools
 
-### `search_crop_requirements`
+### `search_authorised_medicines`
 
-Search crop nutrient requirements, soil data, and recommendations. Use for broad queries about crops and nutrients.
+Search veterinary medicines by name, active substance, species, or pharmaceutical form. Uses tiered FTS5 search with SQL fallback.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `query` | string | Yes | Free-text search query |
-| `crop_group` | string | No | Filter by crop group (e.g. cereals, oilseeds) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `query` | string | Yes | Free-text search (product name, active substance, species) |
+| `species` | string | No | Filter by authorised species (e.g. "cattle", "pig") |
+| `pharmaceutical_form` | string | No | Filter by pharmaceutical form |
+| `active_substance` | string | No | Filter by active substance name |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
 | `limit` | number | No | Max results (default: 20, max: 50) |
 
-**Example:** `{ "query": "nitrogen winter wheat clay" }`
+**Returns:** `results_count`, array of results with `title`, `body`, `species`, `relevance_rank`. Falls back to direct SQL search if FTS returns no results.
+
+**Example:** `{ "query": "amoxicillin cattle" }`
 
 ---
 
-### `get_nutrient_plan`
+### `get_medicine_details`
 
-Get NPK fertiliser recommendation for a specific crop and soil type. Based on AHDB RB209.
+Get full product details for a specific medicine by ID, including associated withdrawal periods.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `crop` | string | Yes | Crop ID or name (e.g. winter-wheat) |
-| `soil_type` | string | Yes | Soil type ID or name (e.g. heavy-clay) |
-| `sns_index` | number | No | Soil Nitrogen Supply index (0-6) |
-| `previous_crop` | string | No | Previous crop group for rotation adjustment |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `medicine_id` | string | Yes | Medicine ID (from search results) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
 
-**Returns:** NPK recommendation in kg/ha with RB209 section reference.
+**Returns:** Product name, registration number, active substances (array), species authorised (array), pharmaceutical form, legal category, MA holder, SPC URL, status, jurisdiction, and `withdrawal_periods` array with species, product type, period days, notes, zero-day flag.
 
-**Example:** `{ "crop": "winter-wheat", "soil_type": "heavy-clay", "sns_index": 2 }`
+**Example:** `{ "medicine_id": "vet-se-001" }`
 
 ---
 
-### `get_soil_classification`
+### `get_withdrawal_period`
 
-Get soil group, characteristics, and drainage class for a soil type or texture.
+Get withdrawal period for a specific medicine, species, and product type combination.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `soil_type` | string | No | Soil type ID or name |
-| `texture` | string | No | Soil texture (e.g. clay, sand, loam) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `medicine_id` | string | Yes | Medicine ID |
+| `species` | string | Yes | Target species (e.g. "cattle", "pig") |
+| `product_type` | string | No | Product type (e.g. "meat", "milk") |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
 
-**Returns:** Soil group number, texture, drainage class, description. If no parameters given, returns all soil types.
+**Returns:** Medicine name, species, withdrawal periods with `period_days`, `product_type`, `notes`, `zero_day_allowed`. If no specific period found, returns available combinations and cascade default warning (28 days meat, 7 days milk).
+
+**Example:** `{ "medicine_id": "vet-se-001", "species": "cattle", "product_type": "milk" }`
 
 ---
 
-### `list_crops`
+### `check_cascade_rules`
 
-List all crops in the database, optionally filtered by crop group.
+Get the prescribing cascade hierarchy. The cascade must be followed in order when no suitable authorised product exists.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `crop_group` | string | No | Filter by crop group (e.g. cereals) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `species` | string | Yes | Target species |
+| `condition` | string | No | Clinical condition (informational context) |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
+
+**Returns:** `cascade_hierarchy` array ordered by `step_order`, each with `description`, `documentation_required`, `default_withdrawal` (meat_days, milk_days), `source`. Includes guidance and warning text about cascade prescribing requirements.
+
+**Example:** `{ "species": "cattle", "condition": "mastitis" }`
 
 ---
 
-### `get_crop_details`
+### `get_medicine_record_requirements`
 
-Get full profile for a crop: nutrient offtake, typical yields, growth stages.
+Get medicine record-keeping requirements by species and/or holding type.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `crop` | string | Yes | Crop ID or name |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `species` | string | No | Filter by species |
+| `holding_type` | string | No | Filter by holding type (e.g. "dairy", "beef") |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
 
-**Returns:** Crop group, typical yield (t/ha), nutrient offtake (N, P2O5, K2O in kg/ha), growth stages.
+**Returns:** `requirements_count`, array of requirements with `holding_type`, `species`, `requirement`, `retention_period`, `regulation_ref`.
+
+**Example:** `{ "species": "cattle", "holding_type": "dairy" }`
 
 ---
 
-### `get_commodity_price`
+### `search_by_active_substance`
 
-Get latest commodity price for a crop with source attribution. Warns if data is stale (>14 days).
+Search medicines by active substance name. Also checks if the substance is banned.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `crop` | string | Yes | Crop ID or name |
-| `market` | string | No | Market type (e.g. ex-farm, delivered) |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `active_substance` | string | Yes | Active substance name or partial match |
+| `species` | string | No | Filter by authorised species |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
 
-**Returns:** Price per tonne (GBP), market, source attribution, published date. Includes `staleness_warning` if >14 days old.
+**Returns:** `results_count`, medicine results with full product details, plus `banned_substance_matches` if any bans match the queried substance.
+
+**Example:** `{ "active_substance": "enrofloxacin", "species": "cattle" }`
 
 ---
 
-### `calculate_margin`
+### `get_banned_substances`
 
-Estimate gross margin for a crop. Uses current commodity price if price_per_tonne not provided.
+Get list of banned substances for food-producing animals, optionally filtered by species or production type.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `crop` | string | Yes | Crop ID or name |
-| `yield_t_ha` | number | Yes | Expected yield in tonnes per hectare |
-| `price_per_tonne` | number | No | Override price (GBP/t). If omitted, uses latest market price |
-| `input_costs` | number | No | Total input costs per hectare (GBP). Default: 0 |
-| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: GB) |
+| `species` | string | No | Filter by species |
+| `production_type` | string | No | Filter by production type |
+| `jurisdiction` | string | No | ISO 3166-1 alpha-2 code (default: SE) |
 
-**Returns:** Revenue/ha, input costs/ha, gross margin/ha, price source.
+**Returns:** `total_banned`, array of substances with `substance`, `category`, `applies_to`, `regulation_ref`. Includes warning about mandatory reporting on detection.
 
-**Example:** `{ "crop": "winter-wheat", "yield_t_ha": 8.5, "input_costs": 520 }`
+**Example:** `{ "species": "cattle" }`

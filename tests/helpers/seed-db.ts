@@ -3,62 +3,98 @@ import { createDatabase, type Database } from '../../src/db.js';
 export function createSeededDatabase(dbPath: string): Database {
   const db = createDatabase(dbPath);
 
-  // Crops
+  // Medicines
   db.run(
-    `INSERT INTO crops (id, name, crop_group, typical_yield_t_ha, nutrient_offtake_n, nutrient_offtake_p2o5, nutrient_offtake_k2o, growth_stages, jurisdiction)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ['winter-wheat', 'Winter Wheat', 'cereals', 8.0, 192, 70, 46, JSON.stringify(['tillering', 'stem extension', 'ear emergence', 'grain fill']), 'GB']
-  );
-  db.run(
-    `INSERT INTO crops (id, name, crop_group, typical_yield_t_ha, nutrient_offtake_n, nutrient_offtake_p2o5, nutrient_offtake_k2o, growth_stages, jurisdiction)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ['spring-barley', 'Spring Barley', 'cereals', 5.5, 110, 46, 55, JSON.stringify(['tillering', 'stem extension', 'ear emergence']), 'GB']
-  );
-
-  // Soil types
-  db.run(
-    `INSERT INTO soil_types (id, name, soil_group, texture, drainage_class, description)
-     VALUES (?, ?, ?, ?, ?, ?)`,
-    ['heavy-clay', 'Heavy Clay', 3, 'clay', 'poor', 'Heavy clay soils with poor drainage. Soil group 3 in RB209.']
-  );
-  db.run(
-    `INSERT INTO soil_types (id, name, soil_group, texture, drainage_class, description)
-     VALUES (?, ?, ?, ?, ?, ?)`,
-    ['light-sand', 'Light Sand', 1, 'sand', 'free', 'Light sandy soils with free drainage. Soil group 1 in RB209.']
-  );
-
-  // Nutrient recommendations
-  db.run(
-    `INSERT INTO nutrient_recommendations (crop_id, soil_group, sns_index, previous_crop_group, n_rec_kg_ha, p_rec_kg_ha, k_rec_kg_ha, s_rec_kg_ha, notes, rb209_section, jurisdiction)
+    `INSERT INTO medicines (id, product_name, registration_number, active_substances, species_authorised, pharmaceutical_form, legal_category, ma_holder, spc_url, status, jurisdiction)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ['winter-wheat', 3, 2, 'cereals', 180, 45, 55, 20, 'Standard recommendation for winter wheat on heavy clay at SNS index 2', 'Section 4', 'GB']
+    ['vet-se-001', 'Vetrimoxin', 'SE-VET-001', JSON.stringify(['amoxicillin']), JSON.stringify(['cattle', 'pig']), 'solution for injection', 'POM-V', 'Ceva', 'https://lakemedelsverket.se/spc/vet-se-001', 'authorised', 'SE']
   );
   db.run(
-    `INSERT INTO nutrient_recommendations (crop_id, soil_group, sns_index, previous_crop_group, n_rec_kg_ha, p_rec_kg_ha, k_rec_kg_ha, s_rec_kg_ha, notes, rb209_section, jurisdiction)
+    `INSERT INTO medicines (id, product_name, registration_number, active_substances, species_authorised, pharmaceutical_form, legal_category, ma_holder, spc_url, status, jurisdiction)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ['spring-barley', 1, 3, 'cereals', 100, 40, 50, 15, 'Standard recommendation for spring barley on light sand at SNS index 3', 'Section 4', 'GB']
+    ['vet-se-002', 'Baytril', 'SE-VET-002', JSON.stringify(['enrofloxacin']), JSON.stringify(['cattle', 'pig', 'poultry']), 'oral solution', 'POM-V', 'Elanco', 'https://lakemedelsverket.se/spc/vet-se-002', 'authorised', 'SE']
+  );
+  db.run(
+    `INSERT INTO medicines (id, product_name, registration_number, active_substances, species_authorised, pharmaceutical_form, legal_category, ma_holder, spc_url, status, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ['vet-se-003', 'Metacam', 'SE-VET-003', JSON.stringify(['meloxicam']), JSON.stringify(['cattle', 'pig', 'horse']), 'solution for injection', 'POM-V', 'Boehringer Ingelheim', 'https://lakemedelsverket.se/spc/vet-se-003', 'authorised', 'SE']
   );
 
-  // Commodity prices
+  // Withdrawal periods
   db.run(
-    `INSERT INTO commodity_prices (crop_id, market, price_per_tonne, currency, price_source, published_date, retrieved_at, source, jurisdiction)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ['winter-wheat', 'ex-farm', 195.0, 'GBP', 'ahdb_market', '2026-03-28', '2026-03-29', 'AHDB Cereals & Oilseeds', 'GB']
+    `INSERT INTO withdrawal_periods (medicine_id, species, product_type, period_days, notes, zero_day_allowed, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    ['vet-se-001', 'cattle', 'meat', 15, 'Standard withdrawal for cattle meat', 0, 'SE']
   );
   db.run(
-    `INSERT INTO commodity_prices (crop_id, market, price_per_tonne, currency, price_source, published_date, retrieved_at, source, jurisdiction)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ['spring-barley', 'ex-farm', 165.0, 'GBP', 'ahdb_market', '2026-03-28', '2026-03-29', 'AHDB Cereals & Oilseeds', 'GB']
+    `INSERT INTO withdrawal_periods (medicine_id, species, product_type, period_days, notes, zero_day_allowed, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    ['vet-se-001', 'cattle', 'milk', 3, 'Short withdrawal for milk', 0, 'SE']
+  );
+  db.run(
+    `INSERT INTO withdrawal_periods (medicine_id, species, product_type, period_days, notes, zero_day_allowed, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    ['vet-se-001', 'pig', 'meat', 10, 'Standard withdrawal for pig meat', 0, 'SE']
+  );
+
+  // Banned substances
+  db.run(
+    `INSERT INTO banned_substances (substance, category, applies_to, regulation_ref, jurisdiction)
+     VALUES (?, ?, ?, ?, ?)`,
+    ['chloramphenicol', 'antimicrobial', 'all food-producing animals', 'Regulation (EU) 37/2010', 'SE']
+  );
+  db.run(
+    `INSERT INTO banned_substances (substance, category, applies_to, regulation_ref, jurisdiction)
+     VALUES (?, ?, ?, ?, ?)`,
+    ['metronidazole', 'antiprotozoal', 'all food-producing animals', 'Regulation (EU) 37/2010', 'SE']
+  );
+  db.run(
+    `INSERT INTO banned_substances (substance, category, applies_to, regulation_ref, jurisdiction)
+     VALUES (?, ?, ?, ?, ?)`,
+    ['diethylstilbestrol', 'hormone', 'cattle', 'Directive 96/22/EC', 'SE']
+  );
+
+  // Cascade rules
+  db.run(
+    `INSERT INTO cascade_rules (step_order, description, documentation_required, default_withdrawal_meat_days, default_withdrawal_milk_days, source, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [1, 'Use a product authorised in Sweden for the species and condition', 'Standard treatment record', null, null, 'SJVFS 2019:25', 'SE']
+  );
+  db.run(
+    `INSERT INTO cascade_rules (step_order, description, documentation_required, default_withdrawal_meat_days, default_withdrawal_milk_days, source, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [2, 'Use a product authorised in Sweden for another species or condition', 'Veterinary justification required', 28, 7, 'SJVFS 2019:25', 'SE']
+  );
+  db.run(
+    `INSERT INTO cascade_rules (step_order, description, documentation_required, default_withdrawal_meat_days, default_withdrawal_milk_days, source, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [3, 'Use a product authorised in another EU member state', 'Special import licence + vet justification', 28, 7, 'SJVFS 2019:25', 'SE']
+  );
+
+  // Record requirements
+  db.run(
+    `INSERT INTO record_requirements (holding_type, species, requirement, retention_period, regulation_ref, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    ['dairy', 'cattle', 'Record date, medicine, dose, withdrawal period, animal ID for all treatments', '5 years', 'SJVFS 2019:25', 'SE']
+  );
+  db.run(
+    `INSERT INTO record_requirements (holding_type, species, requirement, retention_period, regulation_ref, jurisdiction)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    ['pig farm', 'pig', 'Treatment register with batch ID, medicine, diagnosis, veterinarian', '5 years', 'SJVFS 2019:25', 'SE']
   );
 
   // FTS5 search index
   db.run(
-    `INSERT INTO search_index (title, body, crop_group, jurisdiction) VALUES (?, ?, ?, ?)`,
-    ['Winter Wheat Nutrient Requirements', 'Winter wheat requires 180 kg/ha nitrogen on heavy clay soils at SNS index 2. RB209 Section 4.', 'cereals', 'GB']
+    `INSERT INTO search_index (title, body, species, jurisdiction) VALUES (?, ?, ?, ?)`,
+    ['Vetrimoxin amoxicillin', 'Vetrimoxin contains amoxicillin. Authorised for cattle and pig. Solution for injection.', 'cattle pig', 'SE']
   );
   db.run(
-    `INSERT INTO search_index (title, body, crop_group, jurisdiction) VALUES (?, ?, ?, ?)`,
-    ['Spring Barley Nutrient Requirements', 'Spring barley requires 100 kg/ha nitrogen on light sandy soils at SNS index 3. RB209 Section 4.', 'cereals', 'GB']
+    `INSERT INTO search_index (title, body, species, jurisdiction) VALUES (?, ?, ?, ?)`,
+    ['Baytril enrofloxacin', 'Baytril contains enrofloxacin. Authorised for cattle, pig, and poultry. Oral solution.', 'cattle pig poultry', 'SE']
+  );
+  db.run(
+    `INSERT INTO search_index (title, body, species, jurisdiction) VALUES (?, ?, ?, ?)`,
+    ['Metacam meloxicam', 'Metacam contains meloxicam. Authorised for cattle, pig, and horse. Anti-inflammatory.', 'cattle pig horse', 'SE']
   );
 
   return db;
