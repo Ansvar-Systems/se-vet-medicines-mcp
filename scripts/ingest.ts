@@ -2173,6 +2173,111 @@ const withdrawalPeriods: {
   { medicine_id: 'equilis-prequenza', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
   { medicine_id: 'equilis-tetanus', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
   { medicine_id: 'proteqflu', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'nobivac-rabies', species: 'hast', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'covexin', species: 'get', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero goat meat withdrawal per SPC.', zero_day_allowed: 1 },
+  { medicine_id: 'bravoxin-10', species: 'get', product_type: 'kott', period_days: 0, notes: 'Vaccine: zero goat meat withdrawal per SPC.', zero_day_allowed: 1 },
+
+  // ---- Additional withdrawal periods for existing medicines missing species entries ----
+
+  // Procapen horse
+  { medicine_id: 'procapen', species: 'get', product_type: 'kott', period_days: 7, notes: 'SPC: 7 days goat meat. Per cascade rules, follows cattle period.', zero_day_allowed: 0 },
+  { medicine_id: 'procapen', species: 'hast', product_type: 'kott', period_days: 10, notes: 'Horse meat: cascade default applied. 1.5x cattle period.', zero_day_allowed: 0 },
+
+  // Depocillin horse
+  { medicine_id: 'depocillin', species: 'hast', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days horse meat.', zero_day_allowed: 0 },
+
+  // Tribrissen horse
+  { medicine_id: 'tribrissen', species: 'hast', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days horse meat.', zero_day_allowed: 0 },
+
+  // Metacam horse
+  { medicine_id: 'metacam-20', species: 'hast', product_type: 'kott', period_days: 5, notes: 'SPC: 5 days horse meat.', zero_day_allowed: 0 },
+
+  // Ketofen horse
+  { medicine_id: 'ketofen', species: 'hast', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day horse meat (IV route).', zero_day_allowed: 0 },
+
+  // Finadyne horse
+  { medicine_id: 'finadyne', species: 'hast', product_type: 'kott', period_days: 10, notes: 'SPC: 10 days horse meat (IV).', zero_day_allowed: 0 },
+
+  // Previcox horse
+  { medicine_id: 'previcox', species: 'hast', product_type: 'kott', period_days: 20, notes: 'SPC: 20 days horse meat.', zero_day_allowed: 0 },
+
+  // Dexafort horse
+  { medicine_id: 'dexafort', species: 'hast', product_type: 'kott', period_days: 16, notes: 'SPC: 16 days horse meat.', zero_day_allowed: 0 },
+
+  // Buscopan horse
+  { medicine_id: 'buscopan', species: 'hast', product_type: 'kott', period_days: 12, notes: 'SPC: 12 days horse meat.', zero_day_allowed: 0 },
+
+  // Panacur horse
+  { medicine_id: 'panacur', species: 'hast', product_type: 'kott', period_days: 14, notes: 'SPC: 14 days horse meat.', zero_day_allowed: 0 },
+
+  // Ivomec sheep milk
+  { medicine_id: 'ivomec', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for ewes producing milk for consumption. Ivermectin excreted in milk.', zero_day_allowed: 0 },
+
+  // Spotinor sheep milk
+  { medicine_id: 'spotinor', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for sheep.', zero_day_allowed: 1 },
+
+  // Butox sheep milk
+  { medicine_id: 'butox', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'SPC: zero milk withdrawal for sheep.', zero_day_allowed: 1 },
+
+  // Isofluran horse
+  { medicine_id: 'isofluran-vet', species: 'hast', product_type: 'kott', period_days: 2, notes: 'SPC: 2 days horse meat.', zero_day_allowed: 0 },
+
+  // Lidokain horse
+  { medicine_id: 'lidokain-vet', species: 'hast', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day horse meat.', zero_day_allowed: 0 },
+
+  // Ketaminol horse
+  { medicine_id: 'ketaminol', species: 'hast', product_type: 'kott', period_days: 3, notes: 'SPC: 3 days horse meat.', zero_day_allowed: 0 },
+
+  // Xylazin horse
+  { medicine_id: 'xylazin-vet', species: 'hast', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day horse meat.', zero_day_allowed: 0 },
+
+  // Fasinex sheep milk
+  { medicine_id: 'fasinex', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for ewes producing milk for consumption.', zero_day_allowed: 0 },
+
+  // Endex sheep milk
+  { medicine_id: 'endex', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for ewes producing milk for consumption.', zero_day_allowed: 0 },
+
+  // Panacur goat milk
+  { medicine_id: 'panacur', species: 'get', product_type: 'mjolk', period_days: 5, notes: 'SPC: 5 days goat milk. Per cascade, follows cattle period.', zero_day_allowed: 0 },
+
+  // Valbazen goat milk
+  { medicine_id: 'valbazen', species: 'get', product_type: 'mjolk', period_days: 3, notes: 'SPC: 60 hours goat milk. Per cascade, follows cattle period.', zero_day_allowed: 0 },
+
+  // Valbazen sheep milk
+  { medicine_id: 'valbazen', species: 'far', product_type: 'mjolk', period_days: 3, notes: 'SPC: 60 hours sheep milk.', zero_day_allowed: 0 },
+
+  // Cydectin sheep milk
+  { medicine_id: 'cydectin', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for ewes producing milk for consumption.', zero_day_allowed: 0 },
+
+  // Dectomax sheep milk
+  { medicine_id: 'dectomax', species: 'far', product_type: 'mjolk', period_days: 0, notes: 'NOT authorised for ewes producing milk for consumption.', zero_day_allowed: 0 },
+
+  // Hapadex sheep milk
+  { medicine_id: 'hapadex', species: 'far', product_type: 'mjolk', period_days: 3, notes: 'SPC: 72 hours sheep milk.', zero_day_allowed: 0 },
+
+  // Levamisol sheep milk
+  { medicine_id: 'levamisol-vet', species: 'far', product_type: 'mjolk', period_days: 3, notes: 'SPC: 3 days sheep milk.', zero_day_allowed: 0 },
+
+  // Planate horse
+  { medicine_id: 'planate', species: 'hast', product_type: 'kott', period_days: 1, notes: 'SPC: 1 day horse meat.', zero_day_allowed: 0 },
+
+  // Peni-vet goat milk
+  { medicine_id: 'peni-vet', species: 'get', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours goat milk.', zero_day_allowed: 0 },
+
+  // Shotapen sheep milk
+  { medicine_id: 'shotapen', species: 'far', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours sheep milk.', zero_day_allowed: 0 },
+
+  // Borgal sheep milk
+  { medicine_id: 'borgal', species: 'far', product_type: 'mjolk', period_days: 4, notes: 'SPC: 96 hours sheep milk.', zero_day_allowed: 0 },
+
+  // Terramycin sheep milk
+  { medicine_id: 'terramycin', species: 'far', product_type: 'mjolk', period_days: 7, notes: 'SPC: 7 days sheep milk.', zero_day_allowed: 0 },
+
+  // Alamycin sheep milk
+  { medicine_id: 'alamycin', species: 'far', product_type: 'mjolk', period_days: 7, notes: 'SPC: 7 days sheep milk.', zero_day_allowed: 0 },
+
+  // Engemycin sheep milk
+  { medicine_id: 'engemycin', species: 'far', product_type: 'mjolk', period_days: 7, notes: 'SPC: 7 days sheep milk.', zero_day_allowed: 0 },
 ];
 
 console.log(`Inserting ${withdrawalPeriods.length} withdrawal periods...`);
@@ -2583,7 +2688,9 @@ writeFileSync('data/coverage.json', JSON.stringify({
     antiparasitics_ectoparasiticides: 5,
     vaccines: 20,
     hormones_reproduction: 7,
-    anaesthetics_sedation: 10,
+    anaesthetics_sedation: 12,
+    antifungals: 1,
+    diuretics_supportive: 4,
     other_therapeutic: 2,
     companion_animal: 2,
   },
