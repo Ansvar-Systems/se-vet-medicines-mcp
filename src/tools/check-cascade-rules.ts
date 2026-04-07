@@ -1,4 +1,5 @@
 import { buildMeta } from '../metadata.js';
+import { buildCitation } from '../citation.js';
 import { validateJurisdiction } from '../jurisdiction.js';
 import type { Database } from '../db.js';
 
@@ -45,6 +46,13 @@ export function handleCheckCascadeRules(db: Database, args: CascadeArgs) {
     guidance: 'The prescribing cascade must be followed in order. A veterinarian may only move to the next step if no suitable product is available at the current step. When using cascade steps 2-4, extended default withdrawal periods apply unless the product SPC specifies otherwise.',
     warning: 'Cascade prescribing requires veterinary clinical justification and must be documented. Default withdrawal periods (28 days meat, 7 days milk) apply when using products outside their authorised species/indication.',
     _meta: buildMeta({
+    _citation: buildCitation(
+      `SE Prescribing Cascade: ${args.species}`,
+      `Prescribing cascade rules for ${args.species} (${jv.jurisdiction})`,
+      'check_cascade_rules',
+      { species: args.species, ...(args.condition ? { condition: args.condition } : {}) },
+      'https://jordbruksverket.se/djur/djurhalsa',
+    ),
       source_url: 'https://jordbruksverket.se/djur/djurhalsa',
     }),
   };

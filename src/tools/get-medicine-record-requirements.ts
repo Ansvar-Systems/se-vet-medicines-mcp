@@ -1,4 +1,5 @@
 import { buildMeta } from '../metadata.js';
+import { buildCitation } from '../citation.js';
 import { validateJurisdiction } from '../jurisdiction.js';
 import type { Database } from '../db.js';
 
@@ -46,6 +47,13 @@ export function handleGetMedicineRecordRequirements(db: Database, args: RecordAr
       regulation_ref: r.regulation_ref,
     })),
     _meta: buildMeta({
+    _citation: buildCitation(
+      `SE Medicine Records: ${args.species ?? 'all species'}`,
+      `Medicine record-keeping requirements (${jv.jurisdiction})`,
+      'get_medicine_record_requirements',
+      { ...(args.species ? { species: args.species } : {}), ...(args.holding_type ? { holding_type: args.holding_type } : {}) },
+      'https://jordbruksverket.se/djur/djurhalsa',
+    ),
       source_url: 'https://jordbruksverket.se/djur/djurhalsa',
     }),
   };
