@@ -1,4 +1,5 @@
 import { buildMeta } from '../metadata.js';
+import { buildCitation } from '../citation.js';
 import { validateJurisdiction } from '../jurisdiction.js';
 import type { Database } from '../db.js';
 
@@ -45,6 +46,13 @@ export function handleGetBannedSubstances(db: Database, args: BannedArgs) {
     })),
     warning: 'These substances are prohibited for use in food-producing animals under EU and Swedish regulations. Detection of residues in food products triggers mandatory reporting and product recall.',
     _meta: buildMeta({
+    _citation: buildCitation(
+      `SE Banned Substances: ${args.species ?? 'all species'}`,
+      `Banned veterinary substances (${jv.jurisdiction})`,
+      'get_banned_substances',
+      { ...(args.species ? { species: args.species } : {}), ...(args.production_type ? { production_type: args.production_type } : {}) },
+      'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:31996L0022',
+    ),
       source_url: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:31996L0022',
     }),
   };

@@ -1,4 +1,5 @@
 import { buildMeta } from '../metadata.js';
+import { buildCitation } from '../citation.js';
 import { validateJurisdiction } from '../jurisdiction.js';
 import type { Database } from '../db.js';
 
@@ -73,5 +74,11 @@ export function handleGetWithdrawalPeriod(db: Database, args: WithdrawalArgs) {
     })),
     warning: 'Withdrawal periods are critical for food safety. Always verify against the current SPC before treating food-producing animals.',
     _meta: buildMeta(),
+    _citation: buildCitation(
+      `SE Withdrawal: ${medicine.product_name} / ${args.species}`,
+      `Withdrawal period for ${medicine.product_name} in ${args.species} (${jv.jurisdiction})`,
+      'get_withdrawal_period',
+      { medicine_id: args.medicine_id, species: args.species, ...(args.product_type ? { product_type: args.product_type } : {}) },
+    ),
   };
 }

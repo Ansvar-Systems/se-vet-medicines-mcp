@@ -1,4 +1,5 @@
 import { buildMeta } from '../metadata.js';
+import { buildCitation } from '../citation.js';
 import { validateJurisdiction } from '../jurisdiction.js';
 import type { Database } from '../db.js';
 
@@ -58,6 +59,14 @@ export function handleGetMedicineDetails(db: Database, args: MedicineDetailsArgs
       zero_day_allowed: w.zero_day_allowed === 1,
     })),
     _meta: buildMeta({
+    _citation: buildCitation(
+      `SE Medicine: ${medicine.product_name} (${medicine.registration_number})`,
+      `${medicine.product_name} -- ${medicine.pharmaceutical_form} (${jv.jurisdiction})`,
+      'get_medicine_details',
+      { medicine_id: args.medicine_id },
+      medicine.spc_url || 'https://www.lakemedelsverket.se/sv/sok-lakemedelsfakta',
+      [medicine.registration_number],
+    ),
       source_url: medicine.spc_url || 'https://www.lakemedelsverket.se/sv/sok-lakemedelsfakta',
     }),
   };
